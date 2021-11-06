@@ -1,5 +1,5 @@
+<% if user_signed_in? %>
 <nav class="menubar smart-scroll fixed-bottom navbar-light bg-light">
-  <% if user_signed_in? %>
   <a href="<%= root_path %>" class="nav__link <%= current_page?(root_path) ? "nav__link_active" : "" %>">
     <i class="fas fa-search"></i>
     <span class="nav__text">Search</span>
@@ -21,9 +21,14 @@
     <span class="nav__text">Profile</span>
   </a>
   <% else %>
+  <nav class="menubar smart-scroll fixed-bottom navbar-light bg-light" style="padding: 0px 50px;">
     <a href="#" class="nav__link">
       <i class="fas fa-search"></i>
       <span class="nav__text">Search</span>
+    </a>
+    <a href="<%= root_path %>" class="nav__link">
+      <i class="fas fa-plus"></i>
+      <span class="nav__text">Create</span>
     </a>
     <a href="#" class="nav__link">
       <i class="fas fa-user"></i>
