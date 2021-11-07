@@ -8,6 +8,7 @@ Review.destroy_all
 Chatroom.destroy_all
 Message.destroy_all
 
+
 # Users
 
 users = []
@@ -29,11 +30,13 @@ end
 
 puts "5 users were created"
 
+
 # Events
 
 events = []
 
-puts "Creating events... "
+puts "Planning events... "
+
 5.times do
   events << event = Event.create!(
     title: ["Baking workshop", "Let's go the cinema!", "Start of a bookclub", "Poem Reading", "Späti beers in da house", "Grilling hot dogs on a bonfire"].sample,
@@ -47,10 +50,14 @@ puts "Creating events... "
   puts "'#{event.title}' by #{event.user.first_name}"
 end
 
-puts "5 events were created"
+puts "5 events were planned"
+
 
 # Bookings
+
 bookings = []
+
+puts "Desiring bookings... "
 
 5.times do
   bookings << booking = Booking.create!(
@@ -62,16 +69,30 @@ bookings = []
   puts "#{booking.user.first_name} booked '#{booking.event.title}'"
 end
 
-puts "5 bookings were created"
+puts "5 bookings were achieved"
+
 
 # Reviews
 
+# only allow users with an accepted booking request for an event to leave reviews
+def find_correct_users(invites)
+  accepted_bookings = invites.where(status: "accepted")
+  accepted_users = []
+
+  accepted_bookings.each do |booking|
+    accepted_users << booking.user
+  end
+
+  return accepted_users
+end
+
 reviews = []
 
+puts "Asking for reviews..."
+
 5.times do
-  users_with_bookings = users.select(&:bookings)
-  users_with_accepted_bookings = users_with_bookings.select { |user| user.bookings.where(status: "accepted") }
-  user = users_with_accepted_bookings.sample
+  correct_users = find_correct_users(bookings)
+  user = correct_users.sample
 
   reviews << review = Review.create!(
     rating: rand(1..5),
@@ -82,31 +103,50 @@ reviews = []
   puts "#{review.user.first_name} left a review for '#{user.bookings.first.event.title}'"
 end
 
-puts "5 reviews were created"
+puts "5 reviews were left"
 
 # Chatrooms
 
+# making it so that only events that have accepted bookings will have a chatroom
+def finding_events(invites)
+  accepted_bookings = invites.where(status: "accepted")
+  accepted_events = []
+
+  accepted_bookings.each do |booking|
+    accepted_events << booking.event
+  end
+
+  return accepted_events
+end
+
 chatrooms = []
 
-puts "Creating chatrooms..."
+puts "Calibrating chatrooms..."
 
 2.times do
-  # booked_events = events.select(&:bookings)
 
   chatrooms << chatroom = Chatroom.create!(
-    event: booked_events.sample
+    event: finding_events(bookings).sample
   )
   puts "Chatroom for '#{chatroom.event.title}' by '#{chatroom.event.user.first_name}' was created"
 end
 
+puts "2 chatrooms were calibrated"
+
+
 # Messages
 
-puts "Creating messages..."
+puts "Imagining messages..."
 
 10.times do
+  # only people that have an accepted booking for an event can write messages in the event chat
+  users_with_access = users_with_accepted_bookings.select { |user| user.events.chatrooms.include(chatrooms[0] || chatrooms[1])}
+
   message = Message.create!(
     content: Faker::Quote.most_interesting_man_in_the_world,
-    chatroom: chatroom.sample,
+    chatroom: chatrooms.sample,
     user: chatroom.event.booking.user
   )
 end
+
+puts "10 messages were imagined"
