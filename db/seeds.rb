@@ -76,7 +76,7 @@ puts "5 bookings were achieved"
 
 # only allow users with an accepted booking request for an event to leave reviews
 def find_correct_users(invites)
-  accepted_bookings = invites.where(status: "accepted")
+  accepted_bookings = invites.select { |invite| invite.status == "accepted" }
   accepted_users = []
 
   accepted_bookings.each do |booking|
@@ -109,7 +109,7 @@ puts "5 reviews were left"
 
 # making it so that only events that have accepted bookings will have a chatroom
 def finding_events(invites)
-  accepted_bookings = invites.where(status: "accepted")
+  accepted_bookings = invites.select { |invite| invite.status == "accepted" }
   accepted_events = []
 
   accepted_bookings.each do |booking|
@@ -122,11 +122,12 @@ end
 chatrooms = []
 
 puts "Calibrating chatrooms..."
-
-2.times do
+# there should be as many chatrooms as events with 'accepted' bookings
+# and the id of the chosen event should be unique, since one event can only have one chatroom
+finding_events(bookings).each do |event|
 
   chatrooms << chatroom = Chatroom.create!(
-    event: finding_events(bookings).sample
+    event: event
   )
   puts "Chatroom for '#{chatroom.event.title}' by '#{chatroom.event.user.first_name}' was created"
 end
@@ -136,17 +137,27 @@ puts "2 chatrooms were calibrated"
 
 # Messages
 
+# only people that have an accepted booking for an event can write messages in the event chat
+def find_the_chatting_user(messenger)
+  found_users = []
+  messenger.event.bookings.each do |booking|
+    found_users << booking.user
+  end
+  return found_users
+end
+
 puts "Imagining messages..."
 
 10.times do
-  # only people that have an accepted booking for an event can write messages in the event chat
-  users_with_access = users_with_accepted_bookings.select { |user| user.events.chatrooms.include(chatrooms[0] || chatrooms[1])}
+  chatroom = chatrooms.sample
+  user = find_the_chatting_user(chatroom).sample
 
-  message = Message.create!(
+  Message.create!(
     content: Faker::Quote.most_interesting_man_in_the_world,
-    chatroom: chatrooms.sample,
-    user: chatroom.event.booking.user
+    chatroom: chatroom,
+    user: user
   )
 end
 
 puts "10 messages were imagined"
+puts "One of them was this: #{Message.first}"
