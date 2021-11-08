@@ -2,10 +2,10 @@ require 'date'
 require 'faker'
 
 User.destroy_all
+Chatroom.destroy_all
 Event.destroy_all
 Booking.destroy_all
 Review.destroy_all
-Chatroom.destroy_all
 Message.destroy_all
 
 
@@ -39,7 +39,7 @@ puts "Planning events... "
 
 5.times do
   events << event = Event.create!(
-    title: ["Baking workshop", "Let's go the cinema!", "Start of a bookclub", "Poem Reading", "Späti beers in da house", "Grilling hot dogs on a bonfire"].sample,
+    title: ["Baking workshop", "Let's go the cinema!", "Starting a bookclub", "Poem Reading", "Späti beers in da house", "Grilling hot dogs on a bonfire", "Going on a hike", "Drinks at my place"].sample,
     description: Faker::Movies::HitchhikersGuideToTheGalaxy.quote,
     number_of_participants: rand(1..7),
     date: Faker::Date.between(from: '2021-11-1', to: '2021-12-31'),
@@ -89,21 +89,20 @@ end
 reviews = []
 
 puts "Asking for reviews..."
+num_of_b = bookings.select { |booking| booking.status == "accepted" }
 
-5.times do
-  correct_users = find_correct_users(bookings)
-  user = correct_users.sample
-
+# there should only be as many reviews as there have been 'accepted' bookings
+num_of_b.each do |booking|
   reviews << review = Review.create!(
     rating: rand(1..5),
     comment: Faker::Restaurant.review,
-    user: user,
-    booking: user.bookings.first
+    user: booking.user,
+    booking: booking
   )
-  puts "#{review.user.first_name} left a review for '#{user.bookings.first.event.title}'"
+  puts "#{review.user.first_name} left a review for '#{booking.event.title}'"
 end
 
-puts "5 reviews were left"
+puts "#{num_of_b.length} reviews were left"
 
 # Chatrooms
 
@@ -125,14 +124,13 @@ puts "Calibrating chatrooms..."
 # there should be as many chatrooms as events with 'accepted' bookings
 # and the id of the chosen event should be unique, since one event can only have one chatroom
 finding_events(bookings).each do |event|
-
   chatrooms << chatroom = Chatroom.create!(
     event: event
   )
   puts "Chatroom for '#{chatroom.event.title}' by '#{chatroom.event.user.first_name}' was created"
 end
 
-puts "2 chatrooms were calibrated"
+puts "#{finding_events(bookings).length} chatrooms were calibrated"
 
 
 # Messages
@@ -160,4 +158,4 @@ puts "Imagining messages..."
 end
 
 puts "10 messages were imagined"
-puts "One of them was this: #{Message.first}"
+puts "One of them was this: #{Message.first.content}"
