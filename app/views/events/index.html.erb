@@ -1,0 +1,19 @@
+<h1 style="text-align: center">Check our events</h1>
+
+<div class="container">
+  <ul>
+      <% @events.each do |event| %>
+      <li>
+        <a href="<%= event_path(event) %>">
+          <%= event.title %>
+        </a>
+        <div>
+          <p><%= event.description %></p>
+        </div>
+        <div>
+          <p><%= event.number_of_participants %> humans are joining us at <%= event.address %></p>
+        </div>
+      </li>
+      <% end %>
+  </ul>
+</div>
