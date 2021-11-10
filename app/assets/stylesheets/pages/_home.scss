@@ -1,1 +1,109 @@
 // Specific CSS for your home-page
+.banner {
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
+}
+
+.banner h1 {
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 36px;
+  font-weight: bold;
+  font-family: 'Playfair Display';
+}
+
+.banner p {
+  font-size: 20px;
+  color: white;
+  opacity: .7;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.banner .input-group {
+  flex-wrap: nowrap;
+}
+
+#homenav {
+  z-index: 10000;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+
+.card-category-home {
+  background-size: cover;
+  background-position: center;
+  height: 320px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.cards p {
+  font-size: 14px;
+}
+
+a {
+  color:#FDB849;
+  font-weight: medium;
+  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial
+}
+
+.event-button a {
+  text-decoration: underline;
+}
+
+h2 {
+  font-family: 'Playfair Display';
+  font-size: 30px;
+  color: #04151F;
+  font-weight: bold;
+}
+
+h3 {
+  font-family: 'Playfair Display';
+  font-size: 24px;
+  font-weight: bold;
+}
+
+p {
+  color: #04151F;
+  font-size: 18px;
+  font-weight: medium;
+}
+
+.card-category-home {
+  background: asset_url('background.png');
+  background-position: center;
+}
+
+.main img {
+  background-position: center;
+  height: 173px;
+  width: 173px;
+  position: relative;
+}
+
+.bubble {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  height: 173px;
+  width: 173px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 86.5px 86.5px 0px 86.5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}

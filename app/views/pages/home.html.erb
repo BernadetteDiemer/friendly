@@ -1,3 +1,109 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-<%= render 'shared/menubar' %>
+<div class="banner" style="background-image: linear-gradient(0deg, rgba(139, 180, 132, 0.2), rgba(139, 180, 132, 0.2)), url('https://images.unsplash.com/photo-1600265360004-c16515250359?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=870&q=80'); border-radius: 0px 0px 0px 120px;">
+  <%= render 'shared/homenav' %>
+  <%= render 'shared/menubar' %>
+  <div class="container mx-2">
+      <div class="input-group">
+        <div class="form-outline">
+          <input type="search" id="form1" class="form-control" placeholder="Berlin"/>
+        </div>
+        <div class="form-outline">
+          <input type="date" id="form2" class="form-control" value= "<%= Date.today %>"/>
+        </div>
+        <button type="button" class="btn btn-default" style="border-radius: 4px; width: 50px; height:38px;">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+      <div class="event-button" style="text-align: center">
+        <p>or <a><%= link_to "Create an event" %></a></p>
+      </div>
+    <h1>Join an event hosted by like-minded <br>people &<br> find your crowd</h1>
+  </div>
+</div>
+
+
+<%# cards %>
+  <div class="main m-5">
+    <h2>Make connections</h2>
+      <div class="overflow-auto mb-10 md:mb-20">
+        <div class="d-flex flex-row sm:space-y-0">
+
+          <div class="flex flex-col sm:w-1/3 items-center space-y-2 px-6 p1ym4qhs flex flex-col items-center space-y-2 px-6" data-testid="PromoGridItem">
+            <div class="bubble mt-3 md:mt-0 i9prqz1" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1574279606130-09958dc756f7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1180&q=80'); font-weight: normal; font-size:18px; font-family:Montserrat;">Today
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:w-1/3 items-center space-y-2 px-6 p1ym4qhs flex flex-col items-center space-y-2 px-6" data-testid="PromoGridItem" style="padding: 0px 10px;">
+            <div class="bubble mt-3 md:mt-0 i9prqz1" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1543807535-eceef0bc6599?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=774&q=80'); font-weight: normal; font-size:18px; font-family:Montserrat;">Tomorrow
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:w-1/3 items-center space-y-2 px-6 p1ym4qhs flex flex-col items-center space-y-2 px-6" data-testid="PromoGridItem">
+            <div class="bubble mt-3 md:mt-0 i9prqz1" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1607748851687-ba9a10438621?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'); font-weight: normal; font-size:18px; font-family:Montserrat;">This week
+            </div>
+          </div>
+
+        </div>
+      </div>
+  </div>
+
+
+<%# How ir works %>
+  <div class="main m-5">
+    <h2>How it works</h2>
+    <p>Easily expand your circle of friends by meeting new people hosted by others looking for the same.
+    No impression is better than the one made face to face!</p>
+    <div class="btn mb-5" style="width:100%">
+      <%= link_to "Show all events >" %>
+    </div>
+
+    <div class="cards">
+      <div class="card-category-home" style="background-image: asset_url('background.png'); text-align: center; font-size:18px;">
+        <h3 style="padding-top:65px; color:#04151F; font-family:'Montserrat';">Join the community!</h3>
+        <p style="padding: 0px 20px; font-size: 16px; font-weight:normal;">Never be alone if you don’t want to be. Be the first to know about events in your area.<p>
+          <div class="input-group rounded p-3">
+            <input type="search" class="form-control rounded" placeholder="Enter your email" aria-label="Search"
+            aria-describedby="search-addon" />
+            <span class="input-group-text border-0" id="search-addon">
+              <a href="#"><i class="fas fa-paper-plane"></i></a>
+            </span>
+          </div>
+      </div>
+    </div>
+  </div>
+
+<%# Connect %>
+  <div class="main m-5">
+    <h2>Connect with people wherever you are</h2>
+    <p>People on friendly have fostered community, learned new skills and made life-long friends.
+    Host an event and be part of our global movement.</p>
+    <div class="btn">
+      <%= link_to "Learn more", new_user_registration_path, class: 'float-left ml-3' %>
+    </div>
+  </div>
+
+<%# Footer %>
+<!-- Footer -->
+  <footer class="bg mb-5" style="background-color:#8BB484">
+    <div class="container px-5">
+      <div class="row py-4">
+        <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+          <h6 class="font-weight-bold mb-2" style="color:white">Contact us</h6>
+          <ul class="list-unstyled mb-0">
+            <li><a href="mailto:contact@friendly.best" style="color:white;"><i class="fas fa-envelope"> contact@friendly.best</i></a></li>
+            <li><a href="tel:+49 176 62204462" style="color:white"><i class="fas fa-phone"> +49 176 62204462</i></a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-3 mb-lg-0">
+          <h6 class="font-weight-bold mb-2" style="color:white">Follow us</h6>
+          <ul class="list-unstyled mb-0">
+            <div class="footer-links">
+              <a href="https://www.instagram.com/lewagongermany/?hl=en"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.facebook.com/lewagongermany/?brand_redir=116941945171079"><i class="fab fa-facebook"></i></a>
+              <a href="https://twitter.com/lewagongermany?lang=en"><i class="fab fa-twitter"></i></a>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
