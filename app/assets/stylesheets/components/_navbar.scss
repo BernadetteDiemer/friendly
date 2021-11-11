@@ -5,8 +5,27 @@
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
+  flex-basis: auto;
+  display: flex;
+}
+
+.navbar-nav {
+  flex-direction: row;
 }
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+.navbar-brand {
+  align-self: flex-start;
+}
+
+.dropdown.show {
+  display: flex;
+  flex-direction: column;
+}
+
+.avatar {
+  align-self: flex-end;
 }
