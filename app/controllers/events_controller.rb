@@ -7,12 +7,16 @@ class EventsController < ApplicationController
   end
 
   def show
+    @markers = [{
+      lat: @event.latitude,
+      lng: @event.longitude
+    }]
   end
 
   private
 
   def event_params
-    params.require(:event).permit(:title, :description, :number_of_participants, :address, :date, :languages, photos: [])
+    params.require(:event).permit(:title, :description, :number_of_participants, :address, :date, :languages, :photo)
   end
 
   def set_event

@@ -1,18 +1,22 @@
 <%= render 'shared/menubar' %>
 <%= render 'shared/navbar' %>
 
-
-<div class="show-banner">
   <% if @event.photo.attached? %>
-    <%= cl_image_tag @event.photo.key, class: "show-banner", 'aria-haspopup': true, 'aria-expanded': false %>
+    <div class="show-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @event.photo.key, height: 300, crop: :fill %>')">
+      <h1 style="padding-top:100px;"><%= @event.title %></h1>
+      <p>created by <em><%= @event.user.first_name %></em></p>
+    </div>
   <% else %>
-    <%= image_tag "https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80", class: "show-banner", 'aria-haspopup': true, 'aria-expanded': false %>
+  <div class="show-banner p-5" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1519671282429-b44660ead0a7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80'); height: 300px;">
+    <h1 style="color:white;"><%= @event.title %></h1>
+    <p class="created-by mt-5" style="float:right; color:white;">created by <em><%= @event.user.first_name %></em></p>
+    </div>
+  </div>
   <% end %>
-  <h1><%= @event.title %></h1>
-  <p>created by <em><%= @event.user.first_name %></em></p>
-</div>
 
-<div class="container py-5">
+
+
+<div class="container p-5">
   <div class="main">
     <p><strong>What is planned</strong></p>
   </div>
@@ -20,13 +24,17 @@
     <p><%= @event.description %></p>
   </div>
 
-  <div class="location">
+  <div class="location mb-5">
     <p><strong>Location</strong></p>
+    <div id="map"
+     style="width: 100%; height: 200px;"
+     data-markers="<%= @markers.to_json %>"
+     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
   </div>
 
   <div class="d-flex about">
     <div class="profile-pic">
-      <% if current_user.photo.attached? %>
+      <% if @event.user.photo.attached? %>
         <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
       <% else %>
         <%= image_tag "https://images.pexels.com/photos/1983037/pexels-photo-1983037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
