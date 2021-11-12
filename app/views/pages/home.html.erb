@@ -2,14 +2,14 @@
   <%= render 'shared/homenav' %>
   <%= render 'shared/menubar' %>
   <div class="container mx-2">
-      <div class="input-group">
+      <div class="input-group" style="padding-bottom: 10px;">
         <div class="form-outline">
           <input type="search" id="form1" class="form-control" placeholder="Berlin"/>
         </div>
         <div class="form-outline">
           <input type="date" id="form2" class="form-control" value= "<%= Date.today %>"/>
         </div>
-        <button type="button" class="btn btn-default" style="border-radius: 4px; width: 50px; height:38px;">
+        <button type="button" class="btn btn-default" style="border-radius: 0px 4px 4px 0px; width: 50px; height:38px;">
           <i class="fas fa-search"></i>
         </button>
       </div>
@@ -77,7 +77,7 @@
     <p>People on friendly have fostered community, learned new skills and made life-long friends.
     Host an event and be part of our global movement.</p>
     <div class="btn">
-      <%= link_to "Learn more", new_user_registration_path, class: 'float-left ml-3' %>
+      <%= link_to "Learn more", new_user_registration_path, class: 'float-left ml-2' %>
     </div>
   </div>
 
