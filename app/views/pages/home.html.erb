@@ -1,22 +1,29 @@
 <div class="banner" style="background-image: linear-gradient(0deg, rgba(139, 180, 132, 0.2), rgba(139, 180, 132, 0.2)), url('https://images.unsplash.com/photo-1621112904939-e259ddb99cff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1772&q=80'); border-radius: 0px 0px 0px 120px;">
   <%= render 'shared/homenav' %>
   <%= render 'shared/menubar' %>
-  <div class="container mx-2">
-      <div class="input-group" style="padding-bottom: 10px;">
-        <div class="form-outline">
-          <input type="search" id="form1" class="form-control" placeholder="Berlin"/>
-        </div>
-        <div class="form-outline">
-          <input type="date" id="form2" class="form-control" value= "<%= Date.today %>"/>
-        </div>
-        <button type="button" class="btn btn-default" style="border-radius: 0px 4px 4px 0px; width: 50px; height:38px;">
-          <i class="fas fa-search"></i>
-        </button>
+  <div class="container">
+      <div class="input-group d-flex justify-content-center" style="padding-bottom: 10px;">
+          <div class="flex-item">
+            <%= form_tag events_path, method: 'get' do  %>
+              <div class="form-outline">
+                <%= text_field_tag :query,
+                    params[:query],
+                    class: "form-control search-term",
+                    placeholder: "Search for events"
+                    %>
+              </div>
+          </div>
+          <div class="flex-item">
+              <%= button_tag(type: "submit", class: "btn btn-default", style:"border-radius: 0px 4px 4px 0px; width: 50px; height:38px;") do %>
+                <i class="fas fa-search"></i>
+              <% end %>
+            <% end %>
+          </div>
       </div>
       <div class="event-button" style="text-align: center">
         <p>or <a><%= link_to "Create an event" %></a></p>
       </div>
-    <h1>Join an event hosted by like-minded <br>people &<br> find your crowd</h1>
+    <h1 class="mx-2">Join an event hosted by like-minded <br>people &<br> find your crowd</h1>
   </div>
 </div>
 
