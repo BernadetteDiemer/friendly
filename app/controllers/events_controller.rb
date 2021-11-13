@@ -6,11 +6,32 @@ class EventsController < ApplicationController
     @events = policy_scope(Event).order(created_at: :desc)
   end
 
+  def new
+    @event = Event.new
+    authorize @event
+  end
+
   def show
     @markers = [{
       lat: @event.latitude,
       lng: @event.longitude
     }]
+  end
+
+
+  def create
+    @event = Event.new(event_params)
+    @event.user = current_user
+    authorize @event
+    if @event.save
+      redirect_to event_path(@event)
+    else
+      render :new
+    end
+  end
+
+  def index
+    @events = policy_scope(Event).order(created_at: :desc)
   end
 
   private

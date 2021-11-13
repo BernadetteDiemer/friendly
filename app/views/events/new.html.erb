@@ -1,0 +1,13 @@
+<h3>Create your own event!</h3>
+
+<div class="container p-3">
+  <%= simple_form_for(@event) do |f| %>
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :number_of_participants%>
+    <%= f.input :languages, collection: ["english", "french", "german", "italian", "portuguese", "other"]%>
+    <%= f.input :address %>
+    <%= f.input :date %>
+    <%= f.submit class: 'btn float-right w-100 mb-5' %>
+  <% end %>
+</div>
