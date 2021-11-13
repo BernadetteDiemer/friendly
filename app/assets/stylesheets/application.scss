@@ -11,3 +11,30 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+
+// typefaces
+
+.logo {
+  font-family: eldwin-script, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: playfair-display, serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+p {
+  font-family: montserrat, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+p .bold {
+  font-family: montserrat,sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}

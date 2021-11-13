@@ -1,8 +1,9 @@
 .menubar {
   width: 100%;
-  height: 80px;
+  height: 70px;
   display: flex;
   overflow-x: auto;
+  position: fixed;
 }
 
 .nav__link {
@@ -22,7 +23,7 @@
 }
 
 .nav__link_active {
-  color:#30736C;
+  color:#8BB484;
 }
 
 .nav__link i {
