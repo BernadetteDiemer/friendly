@@ -8,6 +8,10 @@
     <%= f.input :languages, collection: ["english", "french", "german", "italian", "portuguese", "other"]%>
     <%= f.input :address %>
     <%= f.input :date %>
+    <%= image_tag "test1.jpg", height: "200px", width: "200px", class: "image-event" %>
+    <%= image_tag "background.png", height: "200px", width: "200px", class: "image-event" %>
+    <%= f.collection_radio_buttons :image, [['veganew', 'vegan'] ,['vegekjtarian', 'vegetarian']], :first, :last %>
+
     <%= f.submit class: 'btn float-right w-100 mb-5' %>
   <% end %>
 </div>
