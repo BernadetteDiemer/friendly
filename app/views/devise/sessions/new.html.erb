@@ -1,7 +1,10 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-8 col-sm-4">
-
+      <nav class="friendly-toggle friendly-toggle--border friendly-toggle--large friendly-toggle--2-active text-uppercase text-center" style="margin-bottom: 24px;">
+        <a class="friendly-toggle__item friendly-app font-weight-bold" href="<%= new_user_session_path %>">Log In</a>
+        <a class="friendly-toggle__item friendly-app selected" href="<%= new_user_registration_path %>">Sign Up</a>
+      </nav>
       <div class="form-login">
         <h2>My friendly</h2>
 
