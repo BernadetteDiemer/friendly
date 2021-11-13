@@ -4,6 +4,12 @@ class EventsController < ApplicationController
 
   def index
     @events = policy_scope(Event).order(created_at: :desc)
+
+    if params[:query].present?
+      @events = Event.search_by_address_and_date(params[:query])
+    else
+      @events = policy_scope(Event).order(created_at: :desc)
+    end
   end
 
   def new
@@ -30,9 +36,6 @@ class EventsController < ApplicationController
     end
   end
 
-  def index
-    @events = policy_scope(Event).order(created_at: :desc)
-  end
 
   private
 
