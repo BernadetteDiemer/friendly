@@ -1,0 +1,39 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    margin: 24px 0;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: column; // it's `row` by default
+  width: 100%;
+}
+
+.btn-container.active {
+
+  .friendly-app {
+    font-weight: bold;
+  }
+  .subheadline-login {
+    width: 100%;
+    height: 2px;
+    background-color: #FDB849;
+    }
+}
+
+.header-title {
+  padding-top: 50px;
+  padding-bottom: 20px;
+  }
+
+.form-actions{
+  text-align: center;
+  padding-top: 20px;
+}
+
+.devise-shared-links{
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
