@@ -1,0 +1,68 @@
+<%= render 'shared/menubar' %>
+<%= render 'shared/navbar' %>
+
+  <% if @event.photo.attached? %>
+    <div class="show-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @event.photo.key, height: 300, crop: :fill %>')">
+      <h1 style="padding-top:100px;"><%= @event.title %></h1>
+      <p>created by <em><%= @event.user.first_name %></em></p>
+    </div>
+  <% else %>
+  <div class="show-banner p-5" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1519671282429-b44660ead0a7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80'); height: 300px;">
+    <h1 style="color:white;"><%= @event.title %></h1>
+    <p class="created-by mt-5" style="float:right; color:white;">created by <em><%= @event.user.first_name %></em></p>
+    </div>
+  </div>
+  <% end %>
+
+
+
+<div class="container p-5">
+  <div class="main">
+    <p><strong>What is planned</strong></p>
+  </div>
+  <div class="planned">
+    <p><%= @event.description %></p>
+  </div>
+
+  <div class="location mb-5">
+    <p><strong>Location</strong></p>
+    <div id="map"
+     style="width: 100%; height: 200px;"
+     data-markers="<%= @markers.to_json %>"
+     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+  </div>
+
+  <div class="d-flex about">
+    <div class="profile-pic">
+      <% if @event.user.photo.attached? %>
+        <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+      <% else %>
+        <%= image_tag "https://images.pexels.com/photos/1983037/pexels-photo-1983037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+      <% end %>
+    </div>
+
+    <div class="d-flex about-text ml-3">
+      <div>
+        <p><%= @event.user.about %></p>
+        <a href="#" style="color:#8BB484; font-size:18px;"><i class="fas fa-comment"><span class="ml-1">Chat</span></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="participants">
+    <div class="joined mb-2" style="float:right;">
+      <% @event.number_of_participants.times do %>
+        <i class="fa fa-user" aria-hidden="true"></i>
+      <% end %>
+    </div>
+
+    <div class="request-button mt-3">
+      <div style="color:white;">
+        <%= link_to "Request to join", root_path, class: 'btn float-right w-100 mb-5' %>
+        <br><br><br><br><br>
+      </div>
+    </div>
+  </div>
+
+
+</div>

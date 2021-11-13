@@ -1,6 +1,9 @@
+<%= render 'shared/navbar' %>
+<%= render 'shared/menubar' %>
+
 <h1 style="text-align: center">Check our events</h1>
 
-<div class="container justify-content-center">
+<div class="container justify-content-center mx-2">
   <ul>
     <% @events.each do |event| %>
   <div class="card-product justify-content-center">
@@ -20,5 +23,6 @@
       <%= image_tag "WavyLines4 (2).png" %>
   </div>
     <% end %>
+    <br><br><br>
   </ul>
 </div>
