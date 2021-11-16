@@ -6,7 +6,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def show?
-    record == user #|| record.user == show
+    user.present?
   end
 
   def update?
