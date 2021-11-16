@@ -71,9 +71,13 @@
   </div>
 
   <div class="green-background">
-    <div class="container">
+    <div class="container event-box">
       <h3><%= @user.first_name %>'s events</h3>
-      <p>No events yet</p>
+      <% if @user.bookings.nil? %>
+        <p>No events yet</p>
+      <% else %>
+
+      <% end %>
     </div>
   </div>
 <% end %>
