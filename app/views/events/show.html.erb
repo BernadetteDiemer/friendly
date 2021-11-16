@@ -1,68 +1,118 @@
-<%= render 'shared/menubar' %>
-<%= render 'shared/navbar' %>
+<div id="events-show">
+  <%= render 'shared/menubar' %>
+  <%= render 'shared/navbar' %>
 
   <% if @event.photo.attached? %>
     <div class="show-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @event.photo.key, height: 300, crop: :fill %>')">
-      <h1 style="padding-top:100px;"><%= @event.title %></h1>
-      <p>created by <em><%= @event.user.first_name %></em></p>
+      <h1 style="padding-top:100px;">
+        <%= @event.title %>
+      </h1>
+      <p>
+        created by <em><%= @event.user.first_name %></em>
+      </p>
     </div>
   <% else %>
   <div class="show-banner p-5" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1519671282429-b44660ead0a7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80'); height: 300px;">
-    <h1 style="color:white;"><%= @event.title %></h1>
-    <p class="created-by mt-5" style="float:right; color:white;">created by <em><%= @event.user.first_name %></em></p>
-    </div>
+    <h1 style="color:white;">
+      <%= @event.title %>
+    </h1>
+    <p class="created-by mt-5" style="float:right; color:white;">
+      created by <em><%= @event.user.first_name %></em>
+    </p>
   </div>
   <% end %>
 
-
-
-<div class="container p-5">
-  <div class="main">
-    <p><strong>What is planned</strong></p>
-  </div>
-  <div class="planned">
-    <p><%= @event.description %></p>
-  </div>
-
-  <div class="location mb-5">
-    <p><strong>Location</strong></p>
-    <div id="map"
-     style="width: 100%; height: 200px;"
-     data-markers="<%= @markers.to_json %>"
-     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-  </div>
-
-  <div class="d-flex about">
-    <div class="profile-pic">
-      <% if @event.user.photo.attached? %>
-        <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-      <% else %>
-        <%= image_tag "https://images.pexels.com/photos/1983037/pexels-photo-1983037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-      <% end %>
+  <div class="container p-5">
+    <div class="main">
+      <p><strong>What is planned</strong></p>
+    </div>
+    <div class="planned">
+      <p><%= @event.description %></p>
     </div>
 
-    <div class="d-flex about-text ml-3">
-      <div>
-        <p><%= @event.user.about %></p>
-        <a href="#" style="color:#8BB484; font-size:18px;"><i class="fas fa-comment"><span class="ml-1">Chat</span></i></a>
+    <div class="location mb-5">
+      <p><strong>Location</strong></p>
+      <div
+        id="map"
+        style="width: 100%; height: 200px;"
+        data-markers="<%= @markers.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div>
-  </div>
 
-  <div class="participants">
-    <div class="joined mb-2" style="float:right;">
-      <% @event.number_of_participants.times do %>
-        <i class="fa fa-user" aria-hidden="true"></i>
-      <% end %>
+    <div class="d-flex about">
+      <div class="profile-pic">
+        <% if @event.user.photo.attached? %>
+          <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% else %>
+          <%= image_tag "https://images.pexels.com/photos/1983037/pexels-photo-1983037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% end %>
+      </div>
+
+      <div class="d-flex about-text ml-3">
+        <div>
+          <p><%= @event.user.about %></p>
+          <a href="#" style="color:#8BB484; font-size:18px;"><i class="fas fa-comment"><span class="ml-1">Chat</span></i></a>
+        </div>
+      </div>
     </div>
 
-    <div class="request-button mt-3">
-      <div style="color:white;">
-        <%= link_to "Request to join", root_path, class: 'btn float-right w-100 mb-5' %>
+    <div class="participants">
+      <div class="joined mb-2" style="float:right;">
+        <% @event.number_of_participants.times do |count| %>
+            <% if (count+1) > @num_accepted_participants %>
+              <i class="opened fa fa-user" aria-hidden="true"></i>
+            <% else %>
+              <i class="reserved fa fa-user" aria-hidden="true"></i>
+            <% end %>
+        <% end %>
+      </div>
+
+      <div class="request-button mt-3" style="color:white;">
+      <% if current_user != nil %>
+        <% if current_user.id == @event.user.id %>
+        <div class="modal-footer">
+          <%= link_to "Delete", event_path(@event), method: :delete, data: { confirm: "Are you sure?"}, class: 'float-left' %>
+          <%= link_to "Edit", edit_event_path(@event), class: 'btn'%>
+          </div>
+        <% else %>
+        <%= simple_form_for [ @event, @booking ] do |e| %>
+          <%= e.hidden_field current_user.id, value: current_user.id %>
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn w-100" data-toggle="modal" data-target="#requestModal">
+            Request to join
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="requestModal" tabindex="-1" role="dialog" aria-labelledby="requestModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="padding-top:150px;" role="document">
+              <div class="modal-content" style="background-color:#8BB484; padding:10px;">
+                <div class="modal-header">
+                  <h5 class="modal-title" style="color:white;" id="requestModalLabel">Write your message</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body" style="padding: 0px 16px 0px 16px;">
+                  <%= e.input :message %>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn w-50">Send message</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <% end %>
+
+      <%else%>
+        <%= link_to "Login to request", new_user_session_path, class: 'btn w-100' %>
+      <% end %>
         <br><br><br><br><br>
       </div>
     </div>
+
   </div>
-
-
 </div>

@@ -1,0 +1,26 @@
+#events-show {
+  .modal {
+    label {
+      display: none;
+    }
+
+    .modal-title, .modal-body {
+      color: #04151F;
+    }
+
+    .modal-footer, .modal-header {
+      border: 0;
+    }
+
+    textarea.form-control {
+      height: 150px;
+    }
+  }
+  .reserved {
+    color: #8BB484;
+  }
+
+  .opened {
+    color: lightgrey;
+  }
+}

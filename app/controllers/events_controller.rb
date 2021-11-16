@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :home, :index]
-  before_action :set_event, only: [:show]
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
     @events = policy_scope(Event).order(created_at: :desc)
@@ -22,24 +22,38 @@ class EventsController < ApplicationController
       lat: @event.latitude,
       lng: @event.longitude
     }]
+    @booking = Booking.new
+    @num_accepted_participants = @event.bookings.select { |invite| invite.status == "accepted" }.count
   end
 
-
   def create
-    @event = Event.new(event_params)
-    @event.user = current_user
-    authorize @event
-    if @event.save
-      redirect_to event_path(@event)
+    @events = Event.new(events_params)
+    @events.user = current_user
+    authorize @events
+    if @events.save
+      redirect_to event_path(@events)
     else
       render :new
     end
   end
 
+  def edit
+  end
+
+  def update
+    @event.update(events_params)
+    redirect_to event_path(@event)
+  end
+
+  def destroy
+    @event.destroy
+    redirect_to events_path
+  end
+
 
   private
 
-  def event_params
+  def events_params
     params.require(:event).permit(:title, :description, :number_of_participants, :address, :date, :languages, :photo)
   end
 
