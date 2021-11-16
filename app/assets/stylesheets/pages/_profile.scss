@@ -30,3 +30,14 @@
   align-items: center;
   color: white;
 }
+
+.profile-avatar-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 3em;
+}
+
+.profile-avatar {
+  background-size: cover;
+  background-position: center;
+}
