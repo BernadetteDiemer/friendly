@@ -1,0 +1,43 @@
+.btn {
+  width: 90%;
+  margin-top: 2em;
+}
+
+.green-background {
+  background-color: #8BB484;
+}
+
+.about {
+  margin-top: 2em;
+}
+
+.about-top p {
+  color: #8BB484;
+  font-size: 14px;
+}
+
+.green-background {
+  margin-top: 2em;
+}
+
+.profile-card {
+  height: 200px;
+  width: 200px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  background-color: #8BB484;
+  align-items: center;
+  color: white;
+}
+
+.profile-avatar-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 3em;
+}
+
+.profile-avatar {
+  background-size: cover;
+  background-position: center;
+}
