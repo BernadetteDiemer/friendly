@@ -24,8 +24,10 @@ class EventsController < ApplicationController
     }]
     @booking = Booking.new
     @num_accepted_participants = @event.bookings.select { |invite| invite.status == "accepted" }.count
-    @matching_booking = current_user.bookings.select { |b| b.event.id == @event.id }.first
-    @already_booked = !@matching_booking.nil?
+    if current_user != nil
+      @matching_booking = current_user.bookings.select { |b| b.event.id == @event.id }.first
+      @already_booked = !@matching_booking.nil?
+    end
   end
 
   def create

@@ -76,7 +76,7 @@
             <%= link_to "Edit", edit_event_path(@event), class: 'btn'%>
           </div>
         <% elsif @already_booked %>
-          <%= link_to "Cancel request", event_booking_path(id: @matching_booking.id, event_id: @matching_booking.event.id), method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-warning'%>
+          <%= link_to "Cancel request", event_booking_path(id: @matching_booking.id, event_id: @matching_booking.event.id), method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-warning w-100'%>
         <% else %>
           <%= simple_form_for [ @event, @booking ] do |e| %>
             <%= e.hidden_field current_user.id, value: current_user.id %>
