@@ -1,0 +1,54 @@
+.my-events-card {
+  background-color: white;
+  border: solid rgb(215, 215, 215) 1px;
+  border-radius: 5px;
+  padding: 1em;
+}
+
+.my-events-card ul {
+  padding: 0;
+}
+
+.text-edit {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+
+  h5 {
+    color: black;
+    margin:0;
+  }
+
+  .event-card-title a {
+    color: black;
+    margin: 0;
+  }
+
+  p {
+    font-size: 14px;
+    color: grey;
+    margin-top: 20px;
+  }
+}
+
+.participants {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+
+  i {
+    color: #8BB484;
+  }
+
+  a {
+    color: #8BB484;
+  }
+}
+
+.booking-requests {
+  list-style: none;
+  li {
+    display: inline;
+    // justify-content: space-between;
+  }
+}
