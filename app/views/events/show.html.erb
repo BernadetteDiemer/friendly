@@ -71,40 +71,42 @@
       <div class="request-button mt-3" style="color:white;">
       <% if current_user != nil %>
         <% if current_user.id == @event.user.id %>
-        <div class="modal-footer">
-          <%= link_to "Delete", event_path(@event), method: :delete, data: { confirm: "Are you sure?"}, class: 'float-left' %>
-          <%= link_to "Edit", edit_event_path(@event), class: 'btn'%>
+          <div class="modal-footer">
+            <%= link_to "Delete", event_path(@event), method: :delete, data: { confirm: "Are you sure?"}, class: 'float-left' %>
+            <%= link_to "Edit", edit_event_path(@event), class: 'btn'%>
           </div>
+        <% elsif @already_booked %>
+          <%= link_to "Cancel request", event_booking_path(id: @matching_booking.id, event_id: @matching_booking.event.id), method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-warning w-100'%>
         <% else %>
-        <%= simple_form_for [ @event, @booking ] do |e| %>
-          <%= e.hidden_field current_user.id, value: current_user.id %>
-          <!-- Button trigger modal -->
-          <button
-            type="button"
-            class="btn w-100" data-toggle="modal" data-target="#requestModal">
-            Request to join
-          </button>
+          <%= simple_form_for [ @event, @booking ] do |e| %>
+            <%= e.hidden_field current_user.id, value: current_user.id %>
+            <!-- Button trigger modal -->
+            <button
+              type="button"
+              class="btn w-100" data-toggle="modal" data-target="#requestModal">
+              Request to join
+            </button>
 
-          <!-- Modal -->
-          <div class="modal fade" id="requestModal" tabindex="-1" role="dialog" aria-labelledby="requestModalLabel" aria-hidden="true">
-            <div class="modal-dialog" style="padding-top:150px;" role="document">
-              <div class="modal-content" style="background-color:#8BB484; padding:10px;">
-                <div class="modal-header">
-                  <h5 class="modal-title" style="color:white;" id="requestModalLabel">Write your message</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body" style="padding: 0px 16px 0px 16px;">
-                  <%= e.input :message %>
-                </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn w-50">Send message</button>
+            <!-- Modal -->
+            <div class="modal fade" id="requestModal" tabindex="-1" role="dialog" aria-labelledby="requestModalLabel" aria-hidden="true">
+              <div class="modal-dialog" style="padding-top:150px;" role="document">
+                <div class="modal-content" style="background-color:#8BB484; padding:10px;">
+                  <div class="modal-header">
+                    <h5 class="modal-title" style="color:white;" id="requestModalLabel">Write your message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" style="padding: 0px 16px 0px 16px;">
+                    <%= e.input :message %>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn w-50">Send message</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
         <% end %>
 
       <%else%>
