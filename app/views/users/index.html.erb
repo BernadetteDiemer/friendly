@@ -4,9 +4,9 @@
 <h1 style="text-align: center">Your events</h1>
 <br>
 <div class="container justify-content-center mx-2">
-  <div class="my-events-card">
     <ul>
       <% current_user.events.each do |event| %>
+        <div class="my-events-card">
         <div class="text-edit">
 
           <div class="text-field">
@@ -61,8 +61,9 @@
           <% end %> <%# end tag for event.bookings.each  %>
         </ul>
 
+      </div> <%# closing tag for 'my-events-card'  %>
       <% end %>
     </ul>
-  </div> <%# closing tag for 'my-events-card'  %>
   <br><br>
 </div>
+<br>

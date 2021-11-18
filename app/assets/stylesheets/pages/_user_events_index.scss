@@ -1,8 +1,13 @@
+ul {
+  padding: 0;
+}
+
 .my-events-card {
   background-color: white;
   border: solid rgb(215, 215, 215) 1px;
   border-radius: 5px;
   padding: 1em;
+  margin-bottom: 1em;
 }
 
 .my-events-card ul {
