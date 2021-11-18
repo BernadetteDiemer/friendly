@@ -1,28 +1,23 @@
 <%= render 'shared/navbar' %>
 <%= render 'shared/menubar' %>
 
-<h1 style="text-align: center">Check our events</h1>
-
-<div class="container justify-content-center mx-2">
-  <ul>
-    <% @events.each do |event| %>
+<div class="container p-4">
+  <h2 style="text-align: center; padding-bottom: 14px;">Check out our events</h1>
+  <% @events.each do |event| %>
   <div class="card-product justify-content-center">
     <div class="card-product-infos">
-        <li>
-          <a href="<%= event_path(event) %>">
-            <%= event.title %>
-          </a>
-          <div>
-            <p><%= event.description %></p>
-          </div>
-          <div>
-            <p><%= event.number_of_participants %> people are joining us at <%= event.address %></p>
-          </div>
-        </li>
+      <p style="color: #8BB484; padding-bottom:10px;"><%= event.date.strftime("%A, %b %e %Y") %></p>
+      <a href="<%= event_path(event) %>">
+        <strong><%= event.title %></strong>
+      </a>
+      <div>
+        <p><%= event.description %></p>
+        <p><%= event.number_of_participants %> humans are joining us at <em><%= event.address %></em></p>
+      </div>
     </div>
-      <%= image_tag "WavyLines4 (2).png" %>
+      <div class="event-picture-right" style="background-image: url('<%= asset_url "WavyLines4 (2).png" %>');">
+    </div>
   </div>
     <% end %>
     <br><br><br>
-  </ul>
 </div>
