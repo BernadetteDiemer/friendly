@@ -16,7 +16,8 @@
   <div class="container">
     <%= simple_form_for current_user, url: profile_path do |f| %>
       <%= f.input :about %>
-      <%= f.submit %>
+      <%= f.input :photo, as: :file, class: "about-btn btn btn-default" %>
+      <%= f.submit "Save & Upload", class: "about-btn btn btn-default" %>
     <% end %>
   </div>
 
@@ -66,16 +67,16 @@
   </div>
 
   <div class="container">
-    <button class="btn btn-default"> Invite <%= @user.first_name %> to your event.</button>
+    <button class="invite-btn btn btn-default"> Invite <%= @user.first_name %> to your event.</button>
   </div>
 
   <div class="green-background">
     <div class="container event-box">
-      <h3><%= @user.first_name %> has <%= @user.events.count %> events</h3>
+      <h3><%= @user.first_name %> has <%= @user.events.count %> event<%= @user.events.count > 1 || @user.events.count == 0 ? "s": "" %></h3>
         <% if @user.bookings.nil? %>
           <p>Stay tuned.</p>
         <% else %>
-          <%= @user.events.each do |event| %>
+          <% @user.events.each do |event| %>
             <%= link_to event_path(event) do %>
               <div class="profile-event-card">
                 <div class="profile-event-card-body">
@@ -84,7 +85,6 @@
                     <p class="event-card-title"><%= event.title %></em>
                   </div>
                   <i class="fas fa-glass-cheers"></i>
-                  <%# <%= link_to 'Show', event_path(event), class: 'float-right'%>
                 </div>
               </div>
             <% end %>
