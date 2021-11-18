@@ -1,0 +1,82 @@
+ul {
+  padding: 0;
+}
+
+.my-events-card {
+  background-color: white;
+  border: solid rgb(215, 215, 215) 1px;
+  border-radius: 5px;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+.my-events-card ul {
+  padding: 0;
+  margin: 0;
+}
+
+.text-edit {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+
+  h5 {
+    color: black;
+    margin:0;
+  }
+
+  .event-card-title a {
+    color: black;
+    margin: 0;
+  }
+
+  p {
+    font-size: 14px;
+    color: grey;
+    margin-top: 20px;
+  }
+}
+
+.participants {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+
+  i {
+    color: #8BB484;
+  }
+
+  a {
+    color: #8BB484;
+  }
+}
+
+h6 {
+  padding-bottom: 1em;
+}
+
+.booking-requests {
+  list-style: none;
+  a {
+    color: black;
+  }
+  img {
+    margin-right: 0.2em;
+  }
+  ul {
+    margin: 0;
+  }
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+#reject {
+  color: rgb(155, 29, 29);
+}
+
+#accept {
+  color: #8BB484;
+}

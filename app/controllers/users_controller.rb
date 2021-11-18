@@ -1,7 +1,11 @@
 require 'date'
 
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update]
+  before_action :set_user, only: [:show, :update, :index]
+
+  def index
+    policy_scope(Event)
+  end
 
   def show
     if @user.birthday
