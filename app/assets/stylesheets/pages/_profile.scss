@@ -2,15 +2,35 @@
   height: 240px;
 }
 
+.title {
+  font-size: 14px;
+  padding:0;
+  margin: 10px;
+  i.fa-star {
+    color: #FDB849;
+  }
+}
+
 .about-btn {
   border-radius: 0px 20px 20px 20px;
   width:auto;
+}
+
+.photo-btn {
+  background:#FDB849;
+  width: 137px;
+  height: 40px;
+  left: 32px;
+  top: 1874px;
+  border-radius: 20px 20px 20px 0px;
+  color: white;
 }
 
 .invite-btn {
   width: 100%;
   margin-top: 2em;
 }
+
 
 .green-background {
   background-color: #8BB484;
@@ -49,6 +69,9 @@
 .profile-avatar {
   background-size: cover;
   background-position: center;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
 }
 
 .event-box {
