@@ -8,15 +8,17 @@
     <i class="fas fa-envelope-open"></i>
     <span class="nav__text">Messages</span>
   </a>
-  <a href="<%= new_event_path %>" class="nav__link nav__link_active">
+  <a href="<%= new_event_path %>" class="nav__link <%= current_page?(new_event_path) ? "nav__link_active" : "" %>">
     <i class="fas fa-plus"></i>
     <span class="nav__text">Create</span>
   </a>
-  <a href="<%= root_path %>" class="nav__link">
+  <a href="<%= bookings_path %>" class="nav__link <%= current_page?(bookings_path) ? "nav__link_active" : "" %>">
     <i class="fas fa-ticket-alt"></i>
     <span class="nav__text">Bookings</span>
   </a>
+
   <a href="<%= profile_path(current_user) %>" class="nav__link">
+
     <i class="fas fa-user"></i>
     <span class="nav__text">Profile</span>
   </a>
@@ -26,11 +28,11 @@
       <i class="fas fa-search"></i>
       <span class="nav__text">Search</span>
     </a>
-    <a href="<%= root_path %>" class="nav__link">
+    <a href="<%= new_user_registration_path %>" class="nav__link">
       <i class="fas fa-plus"></i>
       <span class="nav__text">Create</span>
     </a>
-    <a href="#" class="nav__link">
+    <a href="<%= new_user_registration_path %>" class="nav__link">
       <i class="fas fa-user"></i>
       <span class="nav__text">Profile</span>
     </a>
