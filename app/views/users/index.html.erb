@@ -23,7 +23,7 @@
         <div class="participants">
           <div class="participants-avatars">
             <% event.bookings.each do |booking| %>
-              <% if booking.status.nil? %>
+              <% if booking.accepted? %>
                 <%= link_to profile_path(booking.user) do %>
 
                   <% if booking.user.photo.attached? %>
@@ -43,25 +43,26 @@
 
         <ul class="booking-requests">
           <% event.bookings.each do |booking| %>
-            <li>
-              <%= link_to profile_path(booking.user) do %>
-                <% if booking.user.photo.attached? %>
-                  <%= cl_image_tag booking.user.photo.key, class: "avatar" %>
-                <% else %>
-                  <%= image_tag "https://images.pexels.com/photos/1983037/pexels-photo-1983037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", class: "avatar" %>
+            <% if booking.pending? %>
+              <li>
+                <%= link_to profile_path(booking.user) do %>
+                  <% if booking.user.photo.attached? %>
+                    <%= cl_image_tag booking.user.photo.key, class: "avatar" %>
+                  <% else %>
+                    <%= image_tag "https://images.pexels.com/photos/1983037/pexels-photo-1983037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", class: "avatar" %>
+                  <% end %>
+                  <%= booking.user.first_name %>
+                  <%= booking.user.last_name %>
+                  <%= link_to "Reject", root_path, id:"reject" %>
+                  <%= link_to "Accept", root_path, id:"accept" %>
                 <% end %>
-                <div class="username">
-                  <p><%= booking.user.first_name %> <%= booking.user.last_name %></p>
-                </div>
-                <%= link_to "Reject", class: "btn-danger" %>
-                <%= link_to "Accept", class: "btn-success" %>
-              <% end %>
-            </li>
-          <% end %>
+              </li>
+            <% end %> <%# end tag for if booking.pending?  %>
+          <% end %> <%# end tag for event.bookings.each  %>
         </ul>
 
       <% end %>
-      <br><br><br>
     </ul>
   </div> <%# closing tag for 'my-events-card'  %>
+  <br><br>
 </div>
