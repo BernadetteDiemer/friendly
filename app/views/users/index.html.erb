@@ -1,0 +1,69 @@
+<%= render 'shared/navbar' %>
+<%= render 'shared/menubar' %>
+
+<h1 style="text-align: center">Your events</h1>
+<br>
+<div class="container justify-content-center mx-2">
+    <ul>
+      <% current_user.events.each do |event| %>
+        <div class="my-events-card">
+        <div class="text-edit">
+
+          <div class="text-field">
+            <a href="<%= event_path(event) %>">
+              <h5 class="event-card-date"><%= event.date.strftime("%a, %B %Y") %></h5>
+              <h5 class="event-card-title"><%= event.title %></h5>
+            </a>
+            <p><%= event.description %></p>
+          </div>
+
+          <%= link_to "Edit", edit_event_path(event), class:"btn btn-default" %>
+        </div>
+
+        <div class="participants">
+          <div class="participants-avatars">
+            <% event.bookings.each do |booking| %>
+              <% if booking.accepted? %>
+                <%= link_to profile_path(booking.user) do %>
+
+                  <% if booking.user.photo.attached? %>
+                    <%= cl_image_tag booking.user.photo.key, class: "avatar" %>
+                  <% else %>
+                    <%= image_tag "https://images.pexels.com/photos/1983037/pexels-photo-1983037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", class: "avatar" %>
+                  <% end %> <%# end tag for if booking.user.photo  %>
+
+                <% end %> <%# end tag for link_to  %>
+              <% end %>
+            <% end %> <%# end tag for event.bookings.each  %>
+          </div>
+          <p><i class="far fa-comment-alt"></i> <%= link_to "Chat" %></p>
+        </div>
+
+        <h6><%= event.bookings.count %> <%= event.bookings.count == 1 ? "person wants" : "people want" %> to join your event</h6>
+
+        <ul class="booking-requests">
+          <% event.bookings.each do |booking| %>
+            <% if booking.pending? %>
+              <li>
+                <%= link_to profile_path(booking.user) do %>
+                  <% if booking.user.photo.attached? %>
+                    <%= cl_image_tag booking.user.photo.key, class: "avatar" %>
+                  <% else %>
+                    <%= image_tag "https://images.pexels.com/photos/1983037/pexels-photo-1983037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", class: "avatar" %>
+                  <% end %>
+                  <%= booking.user.first_name %>
+                  <%= booking.user.last_name %>
+                  <%= link_to "Reject", root_path, id:"reject" %>
+                  <%= link_to "Accept", root_path, id:"accept" %>
+                <% end %>
+              </li>
+            <% end %> <%# end tag for if booking.pending?  %>
+          <% end %> <%# end tag for event.bookings.each  %>
+        </ul>
+
+      </div> <%# closing tag for 'my-events-card'  %>
+      <% end %>
+    </ul>
+  <br><br>
+</div>
+<br>
