@@ -16,7 +16,9 @@
     <i class="fas fa-ticket-alt"></i>
     <span class="nav__text">Bookings</span>
   </a>
-  <a href="<%= root_path %>" class="nav__link <%= current_page?(root_path) ? "nav__link_active" : "" %>">
+
+  <a href="<%= profile_path(current_user) %>" class="nav__link">
+
     <i class="fas fa-user"></i>
     <span class="nav__text">Profile</span>
   </a>
