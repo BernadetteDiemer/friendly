@@ -1,1 +1,25 @@
-<h1>Success</h1>
+<%= render 'shared/navbar' %>
+<%= render 'shared/menubar' %>
+
+<div class="container p-4">
+  <h2 style="text-align: center; padding-bottom: 14px;">My upcoming bookings</h1>
+  <% current_user.bookings.each do |booking| %>
+  <div class="card-product">
+    <div class="card-product-infos" style="float: right;">
+      <div>
+        <p style="color: #8BB484"><%= booking.event.date.strftime("%A, %b %e %Y") %></p>
+        <p style="font-size:18px; font-family: Playfair Display; color:#04151F;">
+          <a href="<%= event_path(booking.event) %>"><strong><%= booking.event.title %></strong></a>
+        </p>
+          <strong><p><%= booking.event.description %></p></strong>
+      </div>
+      <div>
+        <p><%= booking.event.number_of_participants %> humans are joining</p>
+      </div>
+    </div>
+    <div class="event-picture-right" style="background-image: url('<%= asset_url "WavyLines4 (2).png" %>');">
+    </div>
+  </div>
+    <% end %>
+    <br><br><br>
+</div>

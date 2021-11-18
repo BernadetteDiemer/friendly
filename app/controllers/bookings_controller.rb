@@ -11,6 +11,10 @@ class BookingsController < ApplicationController
     authorize @booking
   end
 
+  def show
+    @event = Event.find(params[:event_id])
+  end
+
   def create
     @booking = Booking.new(booking_params)
     @booking.user = current_user
@@ -23,6 +27,13 @@ class BookingsController < ApplicationController
     else
       render :show
     end
+  end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    authorize @booking
+    redirect_to event_path(id: params[:event_id])
   end
 
   private

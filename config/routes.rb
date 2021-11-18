@@ -5,8 +5,7 @@ Rails.application.routes.draw do
   get '/users/:user_id/events', to: 'users#index', as: 'users_events'
 
   resources :bookings, only: :index
-
   resources :events do
-    resources :bookings, only: [:new, :create, :update, :destroy]
+    resources :bookings, only: [:new, :show, :create, :update, :destroy]
   end
 end
