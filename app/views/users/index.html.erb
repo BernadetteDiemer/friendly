@@ -53,8 +53,8 @@
                   <% end %>
                   <%= booking.user.first_name %>
                   <%= booking.user.last_name %>
-                  <%= link_to "Reject", root_path, id:"reject" %>
-                  <%= link_to "Accept", root_path, id:"accept" %>
+                  <%= link_to "Reject", booking_path(booking, { status: 'declined' }), method: :patch %>
+                  <%= link_to "Accept", booking_path(booking, { status: 'accepted' }), method: :patch %>
                 <% end %>
               </li>
             <% end %> <%# end tag for if booking.pending?  %>
@@ -67,3 +67,8 @@
   <br><br>
 </div>
 <br>
+
+<%# 1. change the booking status from 'pending' to 'accepted' when clicking the 'accept'-btn %>
+<%# 2. addEventListener to the button %>
+<%# 2. change the bookings status from 'pending' to 'declined' when clicking the 'decline'-button %>
+<%# 3. use AJAX to make the change instanteneous without having to reload the page %>

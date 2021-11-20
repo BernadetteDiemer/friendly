@@ -36,6 +36,13 @@ class BookingsController < ApplicationController
     redirect_to event_path(id: params[:event_id])
   end
 
+  def update
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    @booking.send("#{params[:status]}!")
+    redirect_to users_events_path(current_user)
+  end
+
   private
 
   def booking_params
