@@ -1,11 +1,19 @@
-<h1>Messages for <%= @chatroom.event.title %></h1>
-<div id="messages" data-chatroom-id="<%= @chatroom.id %>">
-  <% @chatroom.messages.each do |message| %>
-    <%= render "messages/message", message: message %>
-  <% end %>
-</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-8">
+      <div class="chatroom">
+        <h1 style="text-align: center; padding-bottom: 30px; padding-top: 30px"> Messages for <%= @chatroom.event.title %></h1>
+          <div class="title" id="messages" data-chatroom-id="<%= @chatroom.id %>">
+            <% @chatroom.messages.each do |message| %>
+              <%= render "messages/message", message: message %>
+            <% end %>
+          </div>
 
-<%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
-  <%= f.input :content, label: false, placeholder: "Start chatting in #{@chatroom.event.title}" %>
-  <%= f.submit %>
-<% end %>
+          <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
+            <%= f.input :content, label: false, placeholder: "Start chatting in #{@chatroom.event.title}" %>
+            <%= f.button :submit, "Chat", class: "btn btn-primary" %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
