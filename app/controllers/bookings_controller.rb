@@ -21,6 +21,7 @@ class BookingsController < ApplicationController
     event = Event.find(params[:event_id])
     @booking.event = event
     @booking.status = "pending"
+    @booking.message = message_params[:message]
     authorize @booking
     if @booking.save!
       redirect_to new_event_booking_path(event)
@@ -36,9 +37,20 @@ class BookingsController < ApplicationController
     redirect_to event_path(id: params[:event_id])
   end
 
+  def update
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    @booking.send("#{params[:status]}!")
+    redirect_to users_events_path(current_user)
+  end
+
   private
 
   def booking_params
     params.require(:event_id) && params.permit(:message, :status)
+  end
+
+  def message_params
+    params.require(:booking).permit(:message)
   end
 end
