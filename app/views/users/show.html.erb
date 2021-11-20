@@ -103,8 +103,9 @@
 <% end %>
 
 <div class="row justify-content-center">
+<h3>Reviews for <%= @user.first_name %></h3>
   <ul id="list-group">
-  <%= link_to "Write a review", new_event_booking_review_path(booking_id: @review.booking.id, event_id: @review.booking.event.id), class: 'btn' %>
+  <%# <%= link_to "Leave a review", new_event_booking_review_path(booking_id: @review.booking.id, event_id: @review.booking.event.id), class: 'btn' %> %>
     <% @reviews.each do |review| %>
       <li id="list-group-item">
         <div class="card-review">

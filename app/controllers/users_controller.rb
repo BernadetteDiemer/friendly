@@ -9,8 +9,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @reviews = current_user.reviews
     @review = current_user.reviews.last
+    @reviews = current_user.reviews
+    reviewed_user = @review.booking.event.user_id
+    # @reviews = Review.joins(:bookings).where(bookings: { id: @review.booking_id}).joins(:events).where(events: { user_id: reviewed_user})
     @bookings = current_user.bookings
     if @user.birthday
       @age = ((Time.zone.now - @user.birthday.to_time) / 1.year.seconds).floor

@@ -23,7 +23,7 @@ puts "Creating users..."
     birthday: Faker::Date.birthday(min_age: 18, max_age: 100),
     gender: Faker::Gender.type ,
     email: Faker::Internet.email,
-    password: Faker::Internet.password(min_length: 6)
+    password: "123456"
   )
   puts "#{user.first_name} #{user.last_name}"
 end
