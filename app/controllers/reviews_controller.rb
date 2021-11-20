@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   skip_after_action :verify_authorized
-  before_action :set_event_booking, only: [:new, :create]
+  before_action :set_event_booking, only: [:new, :edit, :update, :create]
 
   def new
     @review = Review.new
@@ -14,6 +14,16 @@ class ReviewsController < ApplicationController
       redirect_to profile_path(@event.user)
     else
       render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @user == current_user
+      @review.update(review_params)
+      redirect_to profile_path(@event.user)
     end
   end
 

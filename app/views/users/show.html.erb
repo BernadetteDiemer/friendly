@@ -109,6 +109,7 @@
   <i class="fa fa-star" aria-hidden="true"></i>
     <% end %>
     <%= review.comment %></div>
+<%= link_to "Edit", edit_event_booking_review_path( booking_id: review.booking.id, event_id: review.booking.event.id, id: review.id), class: 'btn' %>
 <% end %>
 </div>
 <br><br>
