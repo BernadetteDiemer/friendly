@@ -18,13 +18,15 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    @review = Review.find(params[:id])
   end
 
   def update
-    if @user == current_user
+    @review = Review.find(params[:id])
+
       @review.update(review_params)
       redirect_to profile_path(@event.user)
-    end
+
   end
 
   private
