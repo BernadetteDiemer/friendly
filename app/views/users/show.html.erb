@@ -104,7 +104,8 @@
 
 <div class="row justify-content-center">
   <ul id="list-group">
-    <% current_user.reviews.each do |review| %>
+  <%= link_to "Write a review", new_event_booking_review_path(booking_id: @review.booking.id, event_id: @review.booking.event.id), class: 'btn' %>
+    <% @reviews.each do |review| %>
       <li id="list-group-item">
         <div class="card-review">
           <div class="item justify-content-space-between">
@@ -119,9 +120,8 @@
           <p><%= review.comment %><p>
         </div>
       </li>
-    <%# <%= link_to "Write a review", new_event_booking_review_path(booking_id: booking.id), class: 'btn' %>
-
     <% end %>
+
   </ul>
 </div>
 <br><br>

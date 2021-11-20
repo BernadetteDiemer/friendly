@@ -9,6 +9,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    @reviews = current_user.reviews
+    @review = current_user.reviews.last
+    @bookings = current_user.bookings
     if @user.birthday
       @age = ((Time.zone.now - @user.birthday.to_time) / 1.year.seconds).floor
     end
