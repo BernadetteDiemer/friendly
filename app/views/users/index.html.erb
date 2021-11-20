@@ -62,7 +62,7 @@
         <% num_bookings = 0 %>
         <% event.bookings.each do |booking| %>
           <% if booking.pending? %>
-            <% num_bookings + 1 %>
+            <% num_bookings += 1 %>
           <% end %>
         <% end %>
 
