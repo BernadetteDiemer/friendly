@@ -1,0 +1,128 @@
+.profile-banner {
+  height: 240px;
+}
+
+.title {
+  font-size: 14px;
+  padding:0;
+  margin: 10px;
+  i.fa-star {
+    color: #FDB849;
+  }
+}
+
+.about-btn {
+  border-radius: 0px 20px 20px 20px;
+  width:auto;
+}
+
+.photo-btn {
+  background:#FDB849;
+  width: 137px;
+  height: 40px;
+  left: 32px;
+  top: 1874px;
+  border-radius: 20px 20px 20px 0px;
+  color: white;
+}
+
+.invite-btn {
+  width: 100%;
+  margin-top: 2em;
+}
+
+
+.green-background {
+  background-color: #8BB484;
+}
+
+.about {
+  margin-top: 2em;
+}
+
+.about-top p {
+  color: #8BB484;
+  font-size: 14px;
+}
+
+.green-background {
+  margin-top: 2em;
+}
+
+.profile-card {
+  height: 200px;
+  width: 200px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  background-color: #8BB484;
+  align-items: center;
+  color: white;
+}
+
+.pink {
+  background-color: #FF9AC2;
+}
+
+.profile-avatar-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 3em;
+}
+
+.profile-avatar {
+  background-size: cover;
+  background-position: center;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.event-box {
+  padding: 1em;
+  width: 100%;
+  margin-bottom: 80px;
+  h3 {
+    color: white;
+    margin-bottom: 1em;
+  }
+}
+
+.profile-event-card {
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.701);
+  border: solid white 1px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.profile-event-card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  i {
+    font-size: 2em;
+    margin-right: 0.8em;
+  }
+}
+
+.event-card-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 0.8em;
+  p {
+    margin: 0;
+    font-size: 1rem;
+  }
+}
+
+.event-box a {
+  text-decoration: none;
+  color: black;
+}
+
+.event-box a:hover {
+    color:#FDB849;
+  }

@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
   resources :bookings, only: :index
   resources :chatrooms, only: :show do
     resources :messages, only: :create
   end
 
+  get '/users/:user_id', to: 'users#show', as: 'profile'
+  patch '/users/:user_id', to: 'users#update', as: 'update_profile'
+  get '/users/:user_id/events', to: 'users#index', as: 'users_events'
+
   resources :events do
-    resources :bookings, only: [:new, :create, :update, :destroy]
+    resources :bookings, only: [:new, :show, :create, :update, :destroy]
   end
 end

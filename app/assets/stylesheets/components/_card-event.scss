@@ -7,12 +7,14 @@
   align-items: center;
   margin-bottom: 20px;
   border-radius: 40px 40px 0px 40px;
+  justify-content: space-between;
+  align-items: stretch;
 }
 
-.card-product img {
-  height: 100%;
-  width: 120px;
-  object-fit: cover;
+.card-product .event-picture-right {
+  width: 100px;
+  background-size: cover;
+  flex-shrink: 0;
 }
 
 .card-product h2 {
@@ -31,6 +33,7 @@
 
 .card-product .card-product-infos {
   padding: 16px;
+  margin: 12px;
 }
 
 .card-product-infos {
