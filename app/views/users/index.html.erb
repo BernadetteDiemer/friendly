@@ -14,16 +14,27 @@
               <h5 class="event-card-date"><%= event.date.strftime("%a, %B %Y") %></h5>
               <h5 class="event-card-title"><%= event.title %></h5>
             </a>
-            <p><%= event.description %></p>
+          </div>
+          <div class="links">
+            <%= link_to "Edit", edit_event_path(event), class:"btn btn-default" %>
+
+            <%# function to make sure chat-link only shows up, when there is at least one accepted booking, but only once %>
+            <% accepted_any = 0 %>
+            <% event.bookings.each do |booking| %>
+              <% if booking.accepted? %>
+                <% accepted_any += 1 %>
+              <% end %>
+            <% end %>
+
+            <% if accepted_any > 0 %>
+              <div id="chat-link"><i class="far fa-comment-alt"></i> <%= link_to "Chat" %></div>
+            <% end %>
           </div>
 
-          <%= link_to "Edit", edit_event_path(event), class:"btn btn-default" %>
-
-          <% if event.chatroom %>
-            <p id="chat-link"><i class="far fa-comment-alt"></i> <%= link_to "Chat" %></p>
-          <% end %>
         </div>
 
+        <p id="description"><%= event.description %></p>
+        <br>
         <%# show this section ONLY when there are accepted bookings %>
         <% event.bookings.each do |booking| %>
           <% if booking.accepted? %>
@@ -43,7 +54,7 @@
                 <% end %> <%# end tag for link_to  %>
               </div>
             </div>
-          <% end %>
+          <% end %> <%# end tag for if booking.accepted?  %>
         <% end %> <%# end tag for event.bookings.each  %>
 
 
@@ -55,23 +66,39 @@
           <% end %>
         <% end %>
 
-        <h6><%= num_bookings %> <%= num_bookings == 1 ? "person waits" : "people wait" %> to join your event</h6>
+        <% if event.number_of_participants <= accepted_any %>
+          <h6>Your event has reached it's full capacity!</h6>
+        <% else %>
+          <h6><%= num_bookings %> <%= num_bookings == 1 ? "person waits" : "people wait" %> to join your event</h6>
+        <% end %>
 
         <ul class="booking-requests">
           <% event.bookings.each do |booking| %>
             <% if booking.pending? %>
               <li>
-                <%= link_to profile_path(booking.user) do %>
-                  <% if booking.user.photo.attached? %>
-                    <%= cl_image_tag booking.user.photo.key, class: "avatar" %>
+                <div class="first-line">
+                  <%= link_to profile_path(booking.user) do %>
+                    <% if booking.user.photo.attached? %>
+                      <%= cl_image_tag booking.user.photo.key, class: "avatar" %>
+                    <% else %>
+                      <%= image_tag "https://images.pexels.com/photos/1983037/pexels-photo-1983037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", class: "avatar" %>
+                    <% end %>
+                    <%= booking.user.first_name %>
+                    <%= booking.user.last_name %>
+                    <%= link_to "Decline", booking_path(booking, { status: 'declined' }), method: :patch, id:"reject" %>
+                    <%= link_to "Accept", booking_path(booking, { status: 'accepted' }), method: :patch, id:"accept" %>
+                    <%# 3. use AJAX to make the change instanteneous without having to reload the page %>
+                  <% end %> <%# end tag for link_to profile_path  %>
+                </div>
+                <div class="second-line">
+                  <% if booking.message.nil? %>
+                    <p><%= booking.user.first_name %> did not send you a message.</p>
                   <% else %>
-                    <%= image_tag "https://images.pexels.com/photos/1983037/pexels-photo-1983037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", class: "avatar" %>
+                  <%= booking.message %>
                   <% end %>
-                  <%= booking.user.first_name %>
-                  <%= booking.user.last_name %>
-                  <%= link_to "Decline", booking_path(booking, { status: 'declined' }), method: :patch, id:"reject" %>
-                  <%= link_to "Accept", booking_path(booking, { status: 'accepted' }), method: :patch, id:"accept" %>
-                  <%# 3. use AJAX to make the change instanteneous without having to reload the page %>
+                </div>
+                <% unless booking == event.bookings.last %>
+                  <div class="h-divider"></div>
                 <% end %>
               </li>
             <% end %> <%# end tag for if booking.pending?  %>

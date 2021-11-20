@@ -29,11 +29,31 @@ ul {
     color: black;
     margin: 0;
   }
+}
 
-  p {
-    font-size: 14px;
-    color: grey;
-    margin-top: 20px;
+#description {
+  font-size: 14px;
+  color: grey;
+  margin-top: 20px;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+  .btn {
+    width: 100%;
+  }
+}
+
+#chat-link {
+  padding-top: 1em;
+  i {
+    color: #8BB484;
+  }
+  a {
+    color: #8BB484;
   }
 }
 
@@ -48,10 +68,6 @@ ul {
 
   a {
   color: #8BB484;
-  }
-
-  i {
-    color: #8BB484;
   }
 }
 
@@ -70,10 +86,31 @@ h6 {
   ul {
     margin: 0;
   }
-  li {
+  .first-line {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 0.3em;
+  }
+
+
+  .second-line {
+    font-size: 14px;
+    color: grey;
+    padding-left: 48px;
+    padding-bottom: 0.5em;
+    p {
+      font-size: 14px;
+      color: grey;
+    }
+  }
+
+  .h-divider{
+    margin-top:5px;
+    margin-bottom: 1em;
+    height:1px;
+    width:100%;
+    border-top:1px solid #FF9AC2;
   }
 }
 
