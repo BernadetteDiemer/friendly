@@ -85,8 +85,10 @@
                     <% end %>
                     <%= booking.user.first_name %>
                     <%= booking.user.last_name %>
-                    <%= link_to "Decline", booking_path(booking, { status: 'declined' }), method: :patch, id:"reject" %>
-                    <%= link_to "Accept", booking_path(booking, { status: 'accepted' }), method: :patch, id:"accept" %>
+                    <% if event.number_of_participants <= accepted_any %>
+                      <%= link_to "Decline", booking_path(booking, { status: 'declined' }), method: :patch, id:"reject" %>
+                      <%= link_to "Accept", booking_path(booking, { status: 'accepted' }), method: :patch, id:"accept" %>
+                    <% end %>
                     <%# 3. use AJAX to make the change instanteneous without having to reload the page %>
                   <% end %> <%# end tag for link_to profile_path  %>
                 </div>
