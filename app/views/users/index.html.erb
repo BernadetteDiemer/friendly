@@ -18,12 +18,17 @@
           </div>
 
           <%= link_to "Edit", edit_event_path(event), class:"btn btn-default" %>
+
+          <% if event.chatroom %>
+            <p id="chat-link"><i class="far fa-comment-alt"></i> <%= link_to "Chat" %></p>
+          <% end %>
         </div>
 
-        <div class="participants">
-          <div class="participants-avatars">
-            <% event.bookings.each do |booking| %>
-              <% if booking.accepted? %>
+        <%# show this section ONLY when there are accepted bookings %>
+        <% event.bookings.each do |booking| %>
+          <% if booking.accepted? %>
+            <div class="participants">
+              <div class="participants-avatars">
                 <%= link_to profile_path(booking.user) do %>
 
                   <% if booking.user.photo.attached? %>
@@ -31,15 +36,26 @@
                   <% else %>
                     <%= image_tag "https://images.pexels.com/photos/1983037/pexels-photo-1983037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", class: "avatar" %>
                   <% end %> <%# end tag for if booking.user.photo  %>
+                  <%= booking.user.first_name %>
+                  <%= booking.user.last_name %>
+                  <%= link_to "Uninvite", booking_path(booking, { status: 'declined' }), method: :patch, id:"reject" %>
 
                 <% end %> <%# end tag for link_to  %>
-              <% end %>
-            <% end %> <%# end tag for event.bookings.each  %>
-          </div>
-          <p><i class="far fa-comment-alt"></i> <%= link_to "Chat" %></p>
-        </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %> <%# end tag for event.bookings.each  %>
 
-        <h6><%= event.bookings.count %> <%= event.bookings.count == 1 ? "person wants" : "people want" %> to join your event</h6>
+
+        <%# function to count the number of pending booking requests: %>
+        <% num_bookings = 0 %>
+        <% event.bookings.each do |booking| %>
+          <% if booking.pending? %>
+            <% num_bookings + 1 %>
+          <% end %>
+        <% end %>
+
+        <h6><%= num_bookings %> <%= num_bookings == 1 ? "person waits" : "people wait" %> to join your event</h6>
 
         <ul class="booking-requests">
           <% event.bookings.each do |booking| %>
@@ -53,8 +69,9 @@
                   <% end %>
                   <%= booking.user.first_name %>
                   <%= booking.user.last_name %>
-                  <%= link_to "Reject", booking_path(booking, { status: 'declined' }), method: :patch %>
-                  <%= link_to "Accept", booking_path(booking, { status: 'accepted' }), method: :patch %>
+                  <%= link_to "Decline", booking_path(booking, { status: 'declined' }), method: :patch, id:"reject" %>
+                  <%= link_to "Accept", booking_path(booking, { status: 'accepted' }), method: :patch, id:"accept" %>
+                  <%# 3. use AJAX to make the change instanteneous without having to reload the page %>
                 <% end %>
               </li>
             <% end %> <%# end tag for if booking.pending?  %>
@@ -67,8 +84,3 @@
   <br><br>
 </div>
 <br>
-
-<%# 1. change the booking status from 'pending' to 'accepted' when clicking the 'accept'-btn %>
-<%# 2. addEventListener to the button %>
-<%# 2. change the bookings status from 'pending' to 'declined' when clicking the 'decline'-button %>
-<%# 3. use AJAX to make the change instanteneous without having to reload the page %>
