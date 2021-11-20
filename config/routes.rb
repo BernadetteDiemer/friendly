@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :bookings, only: [:index, :update]
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
+  end
 
   get '/users/:user_id', to: 'users#show', as: 'profile'
   patch '/users/:user_id', to: 'users#update', as: 'update_profile'
