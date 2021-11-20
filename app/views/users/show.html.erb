@@ -101,4 +101,17 @@
     </div>
   </div>
 <% end %>
+
+<div class="container">
+  <% current_user.reviews.each do |review| %>
+  <div class="stars">
+    <%= review.rating.times do %>
+  <i class="fa fa-star" aria-hidden="true"></i>
+    <% end %>
+    <%= review.comment %></div>
+<% end %>
+</div>
+<br><br>
+<br><br>
+<br><br>
 <br><br>
