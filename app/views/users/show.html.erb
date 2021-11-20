@@ -102,15 +102,27 @@
   </div>
 <% end %>
 
-<div class="container">
-  <% current_user.reviews.each do |review| %>
-  <div class="stars">
-    <%= review.rating.times do %>
-  <i class="fa fa-star" aria-hidden="true"></i>
+<div class="row justify-content-center">
+  <ul id="list-group">
+    <% current_user.reviews.each do |review| %>
+      <li id="list-group-item">
+        <div class="card-review">
+          <div class="item justify-content-space-between">
+            <div class="stars">
+              <% review.rating.times do %>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              <% end %>
+                <p>by <%= review.user.first_name %></p>
+            </div>
+            <%= link_to "Edit", edit_event_booking_review_path( booking_id: review.booking.id, event_id: review.booking.event.id, id: review.id), class: 'float:right;' %>
+          </div>
+          <p><%= review.comment %><p>
+        </div>
+      </li>
+    <%# <%= link_to "Write a review", new_event_booking_review_path(booking_id: booking.id), class: 'btn' %>
+
     <% end %>
-    <%= review.comment %></div>
-<%= link_to "Edit", edit_event_booking_review_path( booking_id: review.booking.id, event_id: review.booking.event.id, id: review.id), class: 'btn' %>
-<% end %>
+  </ul>
 </div>
 <br><br>
 <br><br>

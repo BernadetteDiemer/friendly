@@ -1,5 +1,10 @@
-<%= current_user.bookings.each do |booking| %>
+
+<% current_user.bookings.each do |booking| %>
   <% if booking.status == 1  %>
+
     <h1><% booking.title %></h1>
+  <%= link_to "Write a review", new_event_booking_review_path(booking_id: booking.id), class: 'btn' %>
+
   <% end %>
+
 <% end %>

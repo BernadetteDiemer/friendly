@@ -4,7 +4,4 @@ class PagesController < ApplicationController
   def home
   end
 
-  def pastbookings
-    policy_scope(Booking)
-  end
 end
