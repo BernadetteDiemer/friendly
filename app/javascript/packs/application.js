@@ -31,8 +31,10 @@ import { initMapbox } from '../plugins/init_mapbox';
 import { imagePicker } from '../channels/imagePicker';
 
 document.addEventListener('turbolinks:load', () => {
+console.log("wazzap")
   initMapbox();
   imagePicker();
+
 })
 
 // document.addEventListener('turbolinks:load', () => {

@@ -12,10 +12,11 @@
     <%= f.input :address %>
     <%= f.input :date %>
     <% EventType.all.each do |event_type| %>
-      <img src="<%= event_type.image_url %>" data-event-type-id="<%=event_type.id%>">
+      <img class="image-event" src="<%= event_type.image_url %>" data-event-type-id="<%=event_type.id%>">
     <% end %>
-    <%= f.collection_radio_buttons :event_type_id, EventType.all,:id, :name %>
-
+    <div id="event-radios" class="d-none">
+       <%= f.collection_radio_buttons :event_type_id, EventType.all,:id, :name %>
+    </div>
     <%= f.submit class: 'btn float-right w-100 mb-5' %>
   <% end %>
 </div>
