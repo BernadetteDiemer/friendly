@@ -1,10 +1,26 @@
+<%= render 'shared/navbar' %>
+<%= render 'shared/menubar' %>
 
-<% current_user.bookings.each do |booking| %>
-  <% if booking.status == "accepted"  %>
-
-    <h1><%= booking.event.title %></h1>
-  <%= link_to "Write a review", new_event_booking_review_path(booking_id: booking.id, event_id: booking.event.id), class: 'btn' %>
-
-  <% end %>
-
-<% end %>
+<div class="container p-4">
+  <% current_user.bookings.each do |booking| %>
+  <% if booking.status == "accepted" %>
+    <div class="card justify-content-center" style="padding:30px;">
+      <div class="card-product-infos">
+        <h4 style="font-size:18px;"><%= booking.event.title %></h4>
+        <p style="font-size:14px; color:green;">Completed</p>
+        <p style="font-size:14px;"><%= booking.event.date.strftime("%A, %b %e %Y") %></p>
+        <p style="font-size:14px; color:rgb(236, 201, 0);"><i class="fa fa-star" aria-hidden="true"></i><%= link_to " Rate and review your experience", new_event_booking_review_path(booking_id: booking.id, event_id: booking.event.id), class: 'review' %></p>
+      </div>
+    </div>
+    <% elsif booking.status == "declined" %>
+    <div class="card justify-content-center" style="padding:30px;">
+      <div class="card-product-infos">
+        <h4 style="font-size:18px;"><%= booking.event.title %></h4>
+        <p style="font-size:14px; color:red;">Cancelled</p>
+        <p style="font-size:14px;"><%= booking.event.date.strftime("%A, %b %e %Y") %></p>
+        <p style="font-size:14px; color:rgb(236, 201, 0);"><i class="fa fa-star" aria-hidden="true"></i><%= link_to " Rate and review your experience", new_event_booking_review_path(booking_id: booking.id, event_id: booking.event.id), class: 'review' %></p>
+      </div>
+    </div>
+    <% end %>
+    <% end %>
+</div>
