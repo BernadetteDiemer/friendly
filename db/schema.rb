@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_12_144809) do
+ActiveRecord::Schema.define(version: 2021_11_23_194356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2021_11_12_144809) do
     t.text "description"
     t.integer "number_of_participants"
     t.string "address"
-    t.date "date"
+    t.datetime "date"
     t.string "languages"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
