@@ -1,13 +1,13 @@
 require 'date'
 require 'faker'
 
-EventType.destroy_all
-User.destroy_all
 Chatroom.destroy_all
 Event.destroy_all
 Booking.destroy_all
 Review.destroy_all
+Chatroom.destroy_all
 Message.destroy_all
+User.destroy_all
 
 EventType.create(
   image_url: "",
@@ -34,7 +34,7 @@ puts "Creating users..."
     birthday: Faker::Date.birthday(min_age: 18, max_age: 100),
     gender: Faker::Gender.type ,
     email: Faker::Internet.email,
-    password: Faker::Internet.password(min_length: 6)
+    password: "123456"
   )
   puts "#{user.first_name} #{user.last_name}"
 end
@@ -68,7 +68,19 @@ puts "5 events were planned"
 
 bookings = []
 
-puts "Desiring bookings... "
+puts "Desiring accepted bookings... "
+
+5.times do
+  bookings << booking = Booking.create!(
+    status: "accepted",
+    message: Faker::Lorem.sentence,
+    user: users.sample,
+    event: events.sample
+  )
+  puts "#{booking.user.first_name} booked '#{booking.event.title}'"
+end
+
+puts "Desiring all bookings... "
 
 5.times do
   bookings << booking = Booking.create!(
@@ -80,7 +92,7 @@ puts "Desiring bookings... "
   puts "#{booking.user.first_name} booked '#{booking.event.title}'"
 end
 
-puts "5 bookings were achieved"
+puts "10 bookings were achieved"
 
 
 # Reviews

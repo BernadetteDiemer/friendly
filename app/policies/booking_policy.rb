@@ -13,7 +13,11 @@ class BookingPolicy < ApplicationPolicy
     record.user == user
   end
 
-  def update_status?
-    record.user == user || record.art_service.user == user
+  def update?
+    record.user.present?
+  end
+
+  def destroy?
+    record.user == user
   end
 end

@@ -32,10 +32,19 @@ import { imagePicker } from '../channels/imagePicker';
 
 document.addEventListener('turbolinks:load', () => {
 console.log("wazzap")
+import { initChatroomCable } from '../channels/chatroom_channel';
+
+
+
+document.addEventListener('turbolinks:load', () => {
+  initChatroomCable();
   initMapbox();
   imagePicker();
 
 })
+
+
+
 
 // document.addEventListener('turbolinks:load', () => {
 //   // Call your functions here, e.g:

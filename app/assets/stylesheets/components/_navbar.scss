@@ -1,6 +1,5 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -28,4 +27,8 @@
 
 .avatar {
   align-self: flex-end;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color:white;
 }
