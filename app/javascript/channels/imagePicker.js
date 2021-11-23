@@ -6,8 +6,8 @@ const imagePicker = () => {
   imagesEvent.forEach(image => {
     image.addEventListener("click", () => {
       console.log(image.dataset.eventTypeId)
-      imagesEvent.forEach(image => image.classList.remove("border", "rounded-circle"))
-      image.classList.add("border", "rounded-circle")
+      imagesEvent.forEach(image => image.classList.remove("border"))
+      image.classList.add("border", "border-dark","rounded" )
 
       const radio = document.getElementById(`event_event_type_id_${image.dataset.eventTypeId}`)
       console.log(radio)

@@ -30,8 +30,8 @@ import "bootstrap";
 import { initMapbox } from '../plugins/init_mapbox';
 import { imagePicker } from '../channels/imagePicker';
 
-document.addEventListener('turbolinks:load', () => {
-console.log("wazzap")
+
+
 import { initChatroomCable } from '../channels/chatroom_channel';
 
 
