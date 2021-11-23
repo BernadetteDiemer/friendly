@@ -43,13 +43,15 @@
 
   <div class="container p-5">
     <div class="d-flex about">
-      <div class="profile-pic">
-        <% if @event.user.photo.attached? %>
-          <%= cl_image_tag @event.user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-        <% else %>
-          <%= image_tag "https://images.pexels.com/photos/1983037/pexels-photo-1983037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-        <% end %>
-      </div>
+      <%= link_to profile_path(@event.user) do %>
+        <div class="profile-pic">
+          <% if @event.user.photo.attached? %>
+            <%= cl_image_tag @event.user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% else %>
+            <%= image_tag "https://images.pexels.com/photos/1983037/pexels-photo-1983037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% end %>
+        </div>
+      <% end %>
 
       <div class="d-flex about-text ml-3">
         <div>
