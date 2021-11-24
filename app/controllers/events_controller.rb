@@ -20,7 +20,7 @@ class EventsController < ApplicationController
     end
 
     if params[:params3] == "soon"
-      @events = Event.search_by_date(Date.today + 7)
+      @events = Event.where(date: Date.today..1.week.from_now)
     end
 
   end
