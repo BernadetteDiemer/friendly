@@ -85,7 +85,7 @@
                     <% end %>
                     <%= booking.user.first_name %>
                     <%= booking.user.last_name %>
-                    <% if event.number_of_participants <= accepted_any %>
+                    <% if event.number_of_participants >= accepted_any %>
                       <%= link_to "Decline", booking_path(booking, { status: 'declined' }), method: :patch, id:"reject" %>
                       <%= link_to "Accept", booking_path(booking, { status: 'accepted' }), method: :patch, id:"accept" %>
                     <% end %>
