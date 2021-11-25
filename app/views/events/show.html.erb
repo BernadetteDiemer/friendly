@@ -40,7 +40,7 @@
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
-  <%= raise %>
+
   <div class="container p-5">
     <div class="d-flex about">
       <div class="profile-pic">
@@ -54,7 +54,9 @@
       <div class="d-flex about-text ml-3">
         <div>
           <p><%= @event.user.about %></p>
-          <a href="#" style="color:#8BB484; font-size:18px;"><i class="fas fa-comment"><span class="ml-1">Chat</span></i></a>
+
+          <a href="<%= chatroom_path(@event.chatroom) %>" style="color:#8BB484; font-size:18px;"><i class="fas fa-comment"><span class="ml-1">Chat</span></i></a>
+
         </div>
       </div>
     </div>
