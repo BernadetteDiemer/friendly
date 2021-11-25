@@ -13,7 +13,7 @@
           </a>
           <div>
             <p><%= event.description %></p>
-            <p><%= event.number_of_participants %> humans are joining us at <em><%= event.address %></em></p>
+            <p><%= event.bookings.accepted.count %> people are joining us at <em><%= event.address %></em></p>
           </div>
         </div>
           <div class="event-picture-right" style="background-image: url('<%= asset_url "WavyLines4 (2).png" %>');">
