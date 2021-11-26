@@ -10,6 +10,19 @@ class EventsController < ApplicationController
     else
       @events = policy_scope(Event).order(created_at: :desc)
     end
+
+    if params[:params1] == "today"
+      @events = Event.search_by_date(Date.today)
+    end
+
+    if params[:params2] == "tomorrow"
+      @events = Event.search_by_date(Date.tomorrow)
+    end
+
+    if params[:params3] == "soon"
+      @events = Event.where(date: Date.today..1.week.from_now)
+    end
+
   end
 
   def new
@@ -54,7 +67,6 @@ class EventsController < ApplicationController
     @event.destroy
     redirect_to events_path
   end
-
 
   private
 

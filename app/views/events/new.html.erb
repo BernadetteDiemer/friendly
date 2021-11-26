@@ -1,17 +1,17 @@
 <%= render 'shared/navbar' %>
 <%= render 'shared/menubar' %>
 
-<div class="container p-5">
-<h2 style="text-align: center; padding-bottom:20px;">Host an event!</h2>
-  <%= simple_form_for(@event) do |f| %>
-    <%= f.input :title %>
-    <%= f.input :description %>
-    <%= f.input :number_of_participants%>
-    <%= f.input :languages, collection: ["english", "french", "german", "italian", "portuguese", "other"]%>
-    <%= f.input :address %>
-    <%= f.input :date %>
-    <%= f.input :photo, as: :file %>
-    <%= f.submit class: 'btn float-right w-100 mb-5' %>
-  <% end %>
+<div class="container-form p-5">
+  <h2 style="text-align: center; padding-bottom:20px;">Host an event!</h2>
+    <%= simple_form_for(@event) do |f| %>
+      <%= f.input :title %>
+      <%= f.input :description %>
+      <%= f.input :number_of_participants%>
+      <%= f.input :address %>
+      <%= f.input :date %>
+      <%= f.input :languages, as: :check_boxes, collection: ["English", "French", "German", "Italian", "Portuguese", "Other"] %>
+      <%= f.input :photo, as: :file %>
+      <%= f.submit class: 'btn float-right w-100 mb-5' %>
+    <% end %>
   <br><br><br><br>
 </div>
