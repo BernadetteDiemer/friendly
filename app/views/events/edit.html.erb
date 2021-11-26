@@ -1,8 +1,7 @@
-<%= render 'shared/navbar' %>
-<%= render 'shared/menubar' %>
+
 <h3>Create your own event!</h3>
 
-<div class="container p-3">
+<div class="container-form p-3">
   <%= simple_form_for(@event) do |f| %>
     <%= f.input :title %>
     <%= f.input :description %>
