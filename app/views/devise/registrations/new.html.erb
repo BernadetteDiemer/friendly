@@ -23,6 +23,8 @@
                       required: true,
                       autofocus: true,
                       input_html: { autocomplete: "first-name" }%>
+              <%= f.input :birthday, as: :date, start_year: 1950 %>
+              <%= f.input :gender %>
              <%= f.input :email,
                         required: true,
                         autofocus: true,
