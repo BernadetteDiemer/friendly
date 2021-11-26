@@ -65,7 +65,7 @@
       <div class="d-flex about-text ml-3">
         <div>
           <p><%= @event.user.about %></p>
-          <a href="/chatrooms/<%= @event.chatroom.id %>" style="color:#8BB484; font-size:18px;"><i class="fas fa-comment"><span class="ml-1">Chat</span></i></a>
+          <a href="<%= chatroom_path(@event.chatroom) %>" style="color:#8BB484; font-size:18px;"><i class="fas fa-comment"><span class="ml-1">Chat</span></i></a>
         </div>
       </div>
     </div>
