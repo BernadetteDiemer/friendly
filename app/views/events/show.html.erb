@@ -8,7 +8,7 @@
         <%= @event.title %>
       </h1>
       <p class="created-by mt-3" style="float:right; color:white;">
-        created by <em><%= @event.user.first_name %>, <%= @event.user.gender %></em>
+        created by <em><%= @event.user.first_name %>, <%= @age %></em>
       </p>
     </div>
   <% else %>
@@ -17,10 +17,12 @@
         <%= @event.title %>
       </h1>
       <p class="created-by mt-3" style="float:right; color:white;">
-        created by <em><%= @event.user.first_name %>, <%= @event.user.gender %></em></em>
+        created by <em><%= @event.user.first_name %>, <%= @age %></em></em>
       </p>
     </div>
   <% end %>
+<% raise %>
+
   <div class="container pt-5 pr-5 pl-5 top-text">
     <div class="main">
       <p><strong>What is planned</strong></p>
