@@ -20,6 +20,8 @@
     <%= simple_form_for current_user, url: profile_path do |f| %>
       <%= f.input :about %>
       <%= f.input :first_name %>
+      <%= f.input :gender %>
+      <%= f.input :birthday, as: :date, start_year: 1950 %>
       <%= f.input :photo, as: :file, class: "photo-btn" %>
       <%= f.submit "Save & Upload", class: "about-btn btn btn-default" %>
     <% end %>
