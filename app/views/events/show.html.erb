@@ -21,7 +21,9 @@
       </p>
     </div>
   <% end %>
-<% raise %>
+  <div class="container pt-5 pr-5 pl-5">
+    <p style="color: #8BB484;"><%= @event.date.strftime("%a, %B %Y | %l:%M") %></p>
+  </div>
 
   <div class="container pt-5 pr-5 pl-5 top-text">
     <div class="main">
@@ -29,7 +31,6 @@
     </div>
     <div class="main">
       <p><%= @event.languages %></p>
-
     </div>
     <div class="planned">
       <p><%= @event.description %></p>
