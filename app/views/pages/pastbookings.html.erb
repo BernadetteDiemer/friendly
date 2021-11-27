@@ -10,7 +10,7 @@
         <h4 style="font-size:18px;"><%= booking.event.title %></h4>
         <p style="font-size:14px; color:#8BB484;">Completed</p>
         <p style="font-size:14px; color:darkgrey;"><%= booking.event.date.strftime("%A, %b %e %Y") %></p>
-        <p style="font-size:14px; color:rgb(236, 201, 0);"><i class="fa fa-star" aria-hidden="true"></i><%= link_to " Rate and review your experience", new_event_booking_review_path(booking_id: booking.id, event_id: booking.event.id), class: 'review' %></p>
+        <p style="font-size:14px; color:rgb(236, 201, 0);"><i class="fa fa-star" aria-hidden="true"></i><%= link_to " Rate and review your experience", new_event_booking_review_path(booking_id: booking.id, event_id: booking.event.id), class: 'review', data: { turbolinks: false } %></p>
       </div>
     </div>
     <% elsif booking.status == "declined" %>

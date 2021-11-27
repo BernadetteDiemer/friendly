@@ -39,7 +39,9 @@ document.addEventListener('turbolinks:load', () => {
   initFlatpickr();
 })
 
+import { initStarRating } from '../plugins/init_star_rating';
 
+initStarRating();
 
 
 // document.addEventListener('turbolinks:load', () => {
