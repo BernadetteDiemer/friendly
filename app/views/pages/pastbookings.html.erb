@@ -2,6 +2,7 @@
 <%= render 'shared/menubar' %>
 
 <div class="container p-4">
+  <h2 style="text-align: center; padding-bottom: 14px;">Past bookings</h2>
   <% current_user.bookings.each do |booking| %>
   <% if booking.status == "accepted" && booking.event.date < Date.today %>
     <div class="card justify-content-center" style="padding:15px 20px;margin-bottom: 20px;">

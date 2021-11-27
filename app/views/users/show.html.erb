@@ -12,26 +12,31 @@
       <% end %>
     </div>
     <p class="title">Superhost <i class="fas fa-concierge-bell"></i></p>
-    <p> <%= current_user.gender %></p>
+    <p class="title"><i class="fas fa-genderless"></i> <%= current_user.gender %></p>
     <div class="stars">
-    <p class="title"><i class="fa fa-star" aria-hidden="true"></i> Rating 4.5</p>
-
+    <p>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <strong><%= @average.to_f %></strong> (<%= @user.reviews.length %>)
+    </p>
   </div>
 
 
-  <div class="container">
+  <div class="container px-4 text-left justify-content-center">
     <%= simple_form_for current_user, url: profile_path do |f| %>
-      <%= f.input :about %>
-      <%= f.input :first_name %>
-      <%= f.input :gender %>
-      <%= f.input :birthday, as: :date, start_year: 1950 %>
-      <%= f.input :photo, as: :file, class: "photo-btn" %>
+      <strong><%= f.input :about %></strong>
+      <strong><%= f.input :first_name %></strong>
+      <strong><%= f.input :gender %></strong>
+      <strong><%= f.input :birthday, as: :date, start_year: 1950 %></strong>
+      <strong><%= f.input :photo, as: :file, class: "photo-btn" %></strong>
       <%= f.submit "Save & Upload", class: "about-btn btn btn-default" %>
     <% end %>
   </div>
 
-  <div class="main m-5">
-    <h2>All events</h2>
+
+  <div class="main mt-5" style="margin: 10px 0px 10px 10px;">
+    <h2 class="text-center justify-content-center">All events</h2>
+    <div class="main" style="margin: 10px 0px 10px 10px;">
+
       <div class="overflow-auto mb-10 md:mb-20">
         <div class="d-flex flex-row sm:space-y-0">
 
@@ -51,13 +56,14 @@
 
           <%= link_to pastbookings_path do %>
           <div class="flex flex-col sm:w-1/3 text-center space-y-2 px-6 p1ym4qhs flex flex-col items-center space-y-2 px-6" data-testid="PromoGridItem">
-            <h3 class="profile-card mt-3 md:mt-0 i9prqz1">Past or cancelled events
+            <h3 class="cancelled-events mt-3 md:mt-0 i9prqz1">Past or cancelled events
             </h3>
           </div>
           <% end %>
 
         </div>
       </div>
+    </div>
   </div>
 <% else %>
   <% if @user.photo.attached? %>
@@ -110,7 +116,7 @@
 <% end %>
 
 <div class="row justify-content-center">
-<h3>Reviews for <%= @user.first_name %></h3>
+<h2 style="margin-top: 20px;">Reviews for <%= @user.first_name %></h2>
   <ul id="list-group">
     <% @reviews.each do |review| %>
       <li id="list-group-item">
@@ -132,7 +138,4 @@
     <% end %>
   </ul>
 </div>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
+<br><br><br><br>

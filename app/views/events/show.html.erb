@@ -3,7 +3,7 @@
   <%= render 'shared/navbar' %>
 
   <% if @event.photo.attached? %>
-    <div class="show-banner p-5" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @event.photo.key, crop: :fill %>')">
+    <div class="show-banner p-4" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @event.photo.key, crop: :fill %>')">
       <h1 class="ml-2 mt-5" style="color:white;">
         <%= @event.title %>
       </h1>
@@ -12,15 +12,16 @@
       </p>
     </div>
   <% else %>
-    <div class="show-banner p-5" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1519671282429-b44660ead0a7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80')">
+    <div class="show-banner p-4" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1519671282429-b44660ead0a7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80')">
       <h1 class="ml-2 mt-5" style="color:white;">
         <%= @event.title %>
       </h1>
       <p class="created-by mt-3" style="float:right; color:white;">
-        created by <em><%= @event.user.first_name %>, <%= @age %></em></em>
+        created by <em><%= @event.user.first_name %>, <%= @age %></em>
       </p>
     </div>
   <% end %>
+
   <div class="container pt-5 pr-5 pl-5">
     <p style="color: #8BB484;"><%= @event.date.strftime("%a, %B %Y | %l:%M") %></p>
   </div>
@@ -34,6 +35,13 @@
     </div>
     <div class="planned">
       <p><%= @event.description %></p>
+    </div>
+    <div class="main">
+      <p><strong>Languages</strong></p>
+    </div>
+      <p><%= @event.languages %></p>
+    <div class="planned">
+
     </div>
     <div class="location">
       <p><strong>Location</strong></p>
@@ -66,13 +74,14 @@
       <div class="d-flex about-text ml-3">
         <div>
           <p><%= @event.user.about %></p>
-          <a href="<%= chatroom_path(@event.chatroom) %>" style="color:#8BB484; font-size:18px;"><i class="fas fa-comment"><span class="ml-1">Chat</span></i></a>
+          <%# <a href="<%= chatroom_path(@event.chatroom) %>
+          <%# style="color:#8BB484; font-size:18px;"><i class="fas fa-comment"><span class="ml-1">Chat</span></i></a> %>
         </div>
       </div>
     </div>
 
     <div class="participants">
-      <div class="joined mb-2" style="float:right;">
+      <div class="joined mb-2">
         <% @event.number_of_participants.times do |count| %>
             <% if (count+1) > @num_accepted_participants %>
               <i class="opened fa fa-user" aria-hidden="true"></i>
@@ -80,14 +89,15 @@
               <i class="reserved fa fa-user" aria-hidden="true"></i>
             <% end %>
         <% end %>
+        &nbsp <%= @event.number_of_participants - @event.bookings.accepted.count %> <em>places left</em>
       </div>
 
       <div class="request-button mt-3" style="color:white;">
       <% if current_user != nil %>
         <% if current_user.id == @event.user.id %>
           <div class="modal-footer">
-            <%= link_to "Delete", event_path(@event), method: :delete, data: { confirm: "Are you sure?"}, class: 'float-left' %>
-            <%= link_to "Edit", edit_event_path(@event), class: 'btn'%>
+          <%= link_to "Delete", event_path(@event), method: :delete, data: { confirm: "Are you sure?"}, class: 'float-left' %>
+          <%= link_to "Edit", edit_event_path(@event), class: 'btn'%>
           </div>
         <% elsif @already_booked %>
           <%= link_to "Cancel request", event_booking_path(id: @matching_booking.id, event_id: @matching_booking.event.id), method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-warning w-100'%>
