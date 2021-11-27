@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_23_194356) do
+ActiveRecord::Schema.define(version: 2021_11_24_193240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,13 @@ ActiveRecord::Schema.define(version: 2021_11_23_194356) do
     t.index ["event_id"], name: "index_chatrooms_on_event_id"
   end
 
+  create_table "event_types", force: :cascade do |t|
+    t.string "image_url"
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -66,6 +73,8 @@ ActiveRecord::Schema.define(version: 2021_11_23_194356) do
     t.datetime "updated_at", precision: 6, null: false
     t.float "latitude"
     t.float "longitude"
+    t.bigint "event_type_id"
+    t.index ["event_type_id"], name: "index_events_on_event_type_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -111,6 +120,7 @@ ActiveRecord::Schema.define(version: 2021_11_23_194356) do
   add_foreign_key "bookings", "events"
   add_foreign_key "bookings", "users"
   add_foreign_key "chatrooms", "events"
+  add_foreign_key "events", "event_types"
   add_foreign_key "events", "users"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"

@@ -1,0 +1,20 @@
+<div class="chat-index">
+  <h1>All chatrooms</h1>
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-8">
+
+        <% if @chatrooms.present? %>
+          <nav class="event-title">
+            <% @chatrooms.each do |chatroom| %>
+            <% if chatroom.event.user == current_user %>
+              <%= link_to chatroom.event.title, chatroom_path(chatroom.id), class: "nav-link room-nav-link" %>
+            <% end %>
+          <% end %>
+          </nav>
+        <% else %>
+          <div class="text-muted">
+            The are no chatrooms
+          </div>
+        <% end %>
+      </div>
+</div>
