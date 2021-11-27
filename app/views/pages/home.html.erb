@@ -2,6 +2,7 @@
   <%= render 'shared/homenav' %>
   <%= render 'shared/menubar' %>
   <div class="container">
+  <h1 class="text-center" style="font-size:30px; margin-top: 10px; margin-bottom: 20px;">Join an event & <br> find your crowd.</h1>
       <div class="input-group d-flex justify-content-center" style="padding-bottom: 10px;">
           <div class="flex-item">
             <%= form_tag events_path, method: 'get' do  %>
@@ -21,9 +22,9 @@
           </div>
       </div>
       <div class="event-button" style="text-align: center">
-        <p>or <a><%= link_to "Create an event", new_event_path %></a></p>
+        <p style="font-size: 15px;">or <a style="font-size: 15px;"><%= link_to "Create an event", new_event_path %></a></p>
       </div>
-    <h1 class="text-center" style="font-size:30px; margin-top:40px;">Join an event & <br> find your crowd.</h1>
+
   </div>
 </div>
 
@@ -98,7 +99,7 @@
 
 <%# Footer %>
 <!-- Footer -->
-  <footer class="bg mb-5" style="background-color:#8BB484">
+  <footer class="bg mb-5" style="background-color:#8BB484;">
     <div class="container px-5">
       <div class="row py-4">
         <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">

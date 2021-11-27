@@ -14,8 +14,10 @@
     <p class="title">Superhost <i class="fas fa-concierge-bell"></i></p>
     <p class="title"><i class="fas fa-genderless"></i> <%= current_user.gender %></p>
     <div class="stars">
-      <p class="title"><i class="fa fa-star" aria-hidden="true"></i> Rating 4.5</p>
-    </div>
+    <p>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <strong><%= @average.to_f %></strong> (<%= @user.reviews.length %>)
+    </p>
   </div>
 
 
@@ -30,9 +32,11 @@
     <% end %>
   </div>
 
+
   <div class="main mt-5" style="margin: 10px 0px 10px 10px;">
     <h2 class="text-center justify-content-center">All events</h2>
     <div class="main" style="margin: 10px 0px 10px 10px;">
+
       <div class="overflow-auto mb-10 md:mb-20">
         <div class="d-flex flex-row sm:space-y-0">
 
