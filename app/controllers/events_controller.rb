@@ -41,6 +41,7 @@ class EventsController < ApplicationController
       @matching_booking = current_user.bookings.select { |b| b.event.id == @event.id }.first
       @already_booked = !@matching_booking.nil?
     end
+    @event.languages = JSON.parse(@event.languages).reject {|c| c.empty?}.join(', ')
   end
 
   def create
@@ -71,7 +72,7 @@ class EventsController < ApplicationController
   private
 
   def events_params
-    params.require(:event).permit(:title, :description, :number_of_participants, :address, :date, :languages, :photo)
+    params.require(:event).permit(:title, :description, :number_of_participants, :address, :date, :photo, :languages => [])
   end
 
   def set_event

@@ -14,8 +14,10 @@
     <p class="title">Superhost <i class="fas fa-concierge-bell"></i></p>
     <p> <%= current_user.gender %></p>
     <div class="stars">
-    <p class="title"><i class="fa fa-star" aria-hidden="true"></i> Rating 4.5</p>
-
+    <p>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <strong><%= @average.to_f %></strong> (<%= @user.reviews.length %>)
+    </p>
   </div>
 
 
@@ -29,6 +31,8 @@
       <%= f.submit "Save & Upload", class: "about-btn btn btn-default" %>
     <% end %>
   </div>
+
+
 
   <div class="main m-5">
     <h2>All events</h2>
