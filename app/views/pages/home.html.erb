@@ -2,6 +2,7 @@
   <%= render 'shared/homenav' %>
   <%= render 'shared/menubar' %>
   <div class="container">
+  <h1 class="text-center" style="font-size:30px; margin-top:5px; margin-bottom: 30px;">Join an event & <br> find your crowd.</h1>
       <div class="input-group" style="padding-bottom: 10px;">
               <div class="form-outline">
               <%= form_tag events_path, method: 'get' do  %>
@@ -26,7 +27,6 @@
       <div class="event-button" style="text-align: center">
         <p style="font-size: 15px;">or <a style="font-size: 15px;"><%= link_to "Create an event", new_event_path %></a></p>
       </div>
-
   </div>
 </div>
 
