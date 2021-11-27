@@ -116,6 +116,8 @@ GEM
       domain_name (~> 0.5)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
+    image-picker-rails (0.2.4)
+      railties (>= 3.0)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
     listen (3.7.0)
@@ -282,6 +284,7 @@ DEPENDENCIES
   faker!
   font-awesome-sass
   geocoder
+  image-picker-rails
   jbuilder (~> 2.7)
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
@@ -307,4 +310,4 @@ RUBY VERSION
    ruby 2.7.3p183
 
 BUNDLED WITH
-   2.1.4
+   2.2.21

@@ -29,6 +29,10 @@ import "bootstrap";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { initMapbox } from '../plugins/init_mapbox';
+import { imagePicker } from '../channels/imagePicker';
+
+
+
 import { initChatroomCable } from '../channels/chatroom_channel';
 import { initFlatpickr } from "../plugins/flatpickr";
 
@@ -36,6 +40,7 @@ import { initFlatpickr } from "../plugins/flatpickr";
 document.addEventListener('turbolinks:load', () => {
   initChatroomCable();
   initMapbox();
+  imagePicker();
   initFlatpickr();
 })
 

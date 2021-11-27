@@ -8,6 +8,37 @@ Review.destroy_all
 Chatroom.destroy_all
 Message.destroy_all
 User.destroy_all
+EventType.destroy_all
+
+EventType.create(
+  image_url: "https://images.unsplash.com/photo-1605522324043-96094fd06c99?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1472&q=80",
+  name: "cooking"
+)
+
+EventType.create(
+  image_url: "https://images.unsplash.com/photo-1516600164266-f3b8166ae679?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+  name: "Wine Tasting"
+)
+
+EventType.create(
+  image_url: "https://images.unsplash.com/photo-1503482618211-c70b46ede8b0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1476&q=80",
+  name: "Game Night"
+)
+
+EventType.create(
+  image_url: "https://images.unsplash.com/photo-1519671282429-b44660ead0a7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+  name: "Food Home"
+)
+
+EventType.create(
+  image_url: "https://images.unsplash.com/photo-1601325561150-3102333057f5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2874&q=80",
+  name: "PicNic"
+)
+
+EventType.create(
+  image_url: "https://images.unsplash.com/photo-1548095115-45697e222a58?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1476&q=80",
+  name: "Cinema"
+)
 
 
 # Users
@@ -46,7 +77,8 @@ puts "Planning events... "
     date: Faker::Date.between(from: '2021-11-1', to: '2021-12-31'),
     address: Faker::Address.full_address,
     languages: ["english", "french", "german", "italian"].sample,
-    user: users.sample
+    user: users.sample,
+    event_type: EventType.all.sample,
   )
   puts "'#{event.title}' by #{event.user.first_name}"
 end

@@ -1,6 +1,7 @@
 <%= render 'shared/navbar' %>
 <%= render 'shared/menubar' %>
 
+
 <div class="container-form p-5">
   <h2 style="text-align: center; padding-bottom:20px;">Host an event!</h2>
     <%= simple_form_for(@event) do |f| %>
@@ -11,7 +12,16 @@
       <%= f.input :date, as: :string, required: false, input_html: {class: "datepicker"}  %>
       <%= f.input :languages, as: :radio_buttons, collection: ["English", "French", "German", "Italian", "Portuguese", "Other"] %>
       <%= f.input :photo, as: :file %>
-      <%= f.submit class: 'btn float-right w-100 mb-5' %>
+      <% EventType.all.each do |event_type| %>
+      <img class="image-event" style="height: 100px;width: 160px" src="<%= event_type.image_url %>" data-event-type-id="<%=event_type.id%>">
     <% end %>
-  <br><br><br><br>
+    <div id="event-radios" class="d-none">
+       <%= f.collection_radio_buttons :event_type_id, EventType.all,:id, :name %>
+    </div>
+    <%= f.submit class: 'btn float-right w-100 mb-5' %>
+  <% end %>
+
 </div>
+
+
+<script></script>
