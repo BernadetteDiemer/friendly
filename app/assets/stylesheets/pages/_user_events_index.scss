@@ -35,6 +35,7 @@ ul {
   font-size: 14px;
   color: grey;
   margin-top: 20px;
+  overflow: auto;
 }
 
 .links {
@@ -119,4 +120,12 @@ h6 {
 
 #accept {
   color: #8BB484;
+}
+
+.participants-avatars {
+  font-size: 14px;
+}
+
+#reject {
+  margin-left: 10px;
 }
