@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
 
   def index
-    policy_scope(Booking).order(status: :asc)
+    policy_scope(Booking).order(date: :desc)
   end
 
   def new
