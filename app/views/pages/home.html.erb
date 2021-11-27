@@ -2,25 +2,27 @@
   <%= render 'shared/homenav' %>
   <%= render 'shared/menubar' %>
   <div class="container">
-  <h1 class="text-center" style="font-size:30px; margin-top: 10px; margin-bottom: 20px;">Join an event & <br> find your crowd.</h1>
-      <div class="input-group d-flex justify-content-center" style="padding-bottom: 10px;">
-          <div class="flex-item">
-            <%= form_tag events_path, method: 'get' do  %>
+      <div class="input-group" style="padding-bottom: 10px;">
               <div class="form-outline">
+              <%= form_tag events_path, method: 'get' do  %>
                 <%= text_field_tag :query,
                     params[:query],
                     class: "form-control search-term",
-                    placeholder: "Search for events"
+                    placeholder: "Location"
                     %>
               </div>
-          </div>
-          <div class="flex-item">
-              <%= button_tag(type: "submit", class: "btn btn-default", style:"border-radius: 0px 4px 4px 0px; width: 50px; height:38px;") do %>
-                <i class="fas fa-search"></i>
-              <% end %>
+              <div class="form-outline">
+                <%= text_field_tag :date,
+                    params[:date],
+                    class: "form-control search-term datepicker",
+                    placeholder: "Date"
+                    %>
+              </div>
+              <button type="submit" class="btn btn-default" style="border-radius: 0px 4px 4px 0px; width: 50px; height:38px;">
+                  <i class="fas fa-search"></i>
+              </button>
             <% end %>
-          </div>
-      </div>
+      </div> <%# input group end %>
       <div class="event-button" style="text-align: center">
         <p style="font-size: 15px;">or <a style="font-size: 15px;"><%= link_to "Create an event", new_event_path %></a></p>
       </div>
