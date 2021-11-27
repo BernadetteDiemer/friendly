@@ -5,8 +5,8 @@ class EventsController < ApplicationController
   def index
     @events = policy_scope(Event).order(created_at: :desc)
 
-    if params[:query].present?
-      @events = Event.search_by_address_and_date(params[:query])
+    if params[:query].present? || params[:date].present?
+      @events = Event.search_by_address_and_date("#{params[:query]} #{params[:date]}")
     else
       @events = policy_scope(Event).order(created_at: :desc)
     end
