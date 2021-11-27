@@ -2,6 +2,7 @@
 <%= render 'shared/menubar' %>
 
 <div class="container p-4">
+  <h2 style="text-align: center; padding-bottom: 14px;">Past bookings</h2>
   <% current_user.bookings.each do |booking| %>
   <% if booking.status == "accepted" && booking.event.date < Date.today %>
     <div class="card justify-content-center" style="padding:15px 20px;margin-bottom: 20px;">
@@ -9,7 +10,7 @@
         <h4 style="font-size:18px;"><%= booking.event.title %></h4>
         <p style="font-size:14px; color:#8BB484;">Completed</p>
         <p style="font-size:14px; color:darkgrey;"><%= booking.event.date.strftime("%A, %b %e %Y") %></p>
-        <p style="font-size:14px; color:rgb(236, 201, 0);"><i class="fa fa-star" aria-hidden="true"></i><%= link_to " Rate and review your experience", new_event_booking_review_path(booking_id: booking.id, event_id: booking.event.id), class: 'review' %></p>
+        <p style="font-size:14px; color:rgb(236, 201, 0);"><i class="fa fa-star" aria-hidden="true"></i><%= link_to " Rate and review your experience", new_event_booking_review_path(booking_id: booking.id, event_id: booking.event.id), class: 'review', data: { turbolinks: false } %></p>
       </div>
     </div>
     <% elsif booking.status == "declined" %>

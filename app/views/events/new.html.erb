@@ -8,8 +8,8 @@
       <%= f.input :description %>
       <%= f.input :number_of_participants%>
       <%= f.input :address %>
-      <%= f.input :date %>
-      <%= f.input :languages, as: :check_boxes, collection: ["English", "French", "German", "Italian", "Portuguese", "Other"] %>
+      <%= f.input :date, as: :string, required: false, input_html: {class: "datepicker"}  %>
+      <%= f.input :languages, as: :radio_buttons, collection: ["English", "French", "German", "Italian", "Portuguese", "Other"] %>
       <%= f.input :photo, as: :file %>
       <%= f.submit class: 'btn float-right w-100 mb-5' %>
     <% end %>
