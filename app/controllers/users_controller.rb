@@ -13,6 +13,8 @@ class UsersController < ApplicationController
     if @user.birthday
       @age = ((Time.zone.now - @user.birthday.to_time) / 1.year.seconds).floor
     end
+    @average = average_rating(@reviews)
+    @booking = Booking.new
   end
 
   def update
@@ -29,7 +31,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:about, :first_name, :last_name, :photo)
+    params.require(:user).permit(:about, :first_name, :last_name, :photo, :birthday, :gender, :languages)
   end
 
   def set_user
@@ -37,4 +39,16 @@ class UsersController < ApplicationController
     authorize @user
   end
 
+  def average_rating(reviews)
+    if reviews.blank?
+      return 0
+    else
+      sum = 0
+      reviews.each do |review|
+        sum += review.rating
+      end
+      average = sum.to_f / reviews.length
+      return average
+    end
+  end
 end

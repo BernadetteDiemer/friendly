@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :bookings, only: [:index, :update]
+
+  resources :chatrooms, only: :index
   resources :chatrooms, only: :show do
     resources :messages, only: :create
   end

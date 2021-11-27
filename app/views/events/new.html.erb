@@ -1,17 +1,18 @@
 <%= render 'shared/navbar' %>
 <%= render 'shared/menubar' %>
 
-<h3>Create your own event!</h3>
 
-<div class="container p-3">
-  <%= simple_form_for(@event) do |f| %>
-    <%= f.input :title %>
-    <%= f.input :description %>
-    <%= f.input :number_of_participants%>
-    <%= f.input :languages, collection: ["english", "french", "german", "italian", "portuguese", "other"]%>
-    <%= f.input :address %>
-    <%= f.input :date %>
-    <% EventType.all.each do |event_type| %>
+<div class="container-form p-5">
+  <h2 style="text-align: center; padding-bottom:20px;">Host an event!</h2>
+    <%= simple_form_for(@event) do |f| %>
+      <%= f.input :title %>
+      <%= f.input :description %>
+      <%= f.input :number_of_participants%>
+      <%= f.input :address %>
+      <%= f.input :date, as: :string, required: false, input_html: {class: "datepicker"}  %>
+      <%= f.input :languages, as: :radio_buttons, collection: ["English", "French", "German", "Italian", "Portuguese", "Other"] %>
+      <%= f.input :photo, as: :file %>
+      <% EventType.all.each do |event_type| %>
       <img class="image-event" style="height: 100px;width: 160px" src="<%= event_type.image_url %>" data-event-type-id="<%=event_type.id%>">
     <% end %>
     <div id="event-radios" class="d-none">

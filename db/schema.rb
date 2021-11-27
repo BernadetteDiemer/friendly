@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2021_11_24_193240) do
     t.text "description"
     t.integer "number_of_participants"
     t.string "address"
-    t.date "date"
+    t.datetime "date"
     t.string "languages"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false

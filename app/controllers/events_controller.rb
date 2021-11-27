@@ -3,12 +3,24 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @events = policy_scope(Event).order(created_at: :desc)
+    @events = policy_scope(Event).order(date: :asc)
 
-    if params[:query].present?
-      @events = Event.search_by_address_and_date(params[:query])
+    if params[:query].present? || params[:date].present?
+      @events = Event.search_by_address_and_date("#{params[:query]} #{params[:date]}")
     else
-      @events = policy_scope(Event).order(created_at: :desc)
+      @events = policy_scope(Event).order(date: :asc)
+    end
+
+    if params[:params1] == "today"
+      @events = Event.search_by_date(Date.today)
+    end
+
+    if params[:params2] == "tomorrow"
+      @events = Event.search_by_date(Date.tomorrow)
+    end
+
+    if params[:params3] == "soon"
+      @events = Event.where(date: Date.today..1.week.from_now)
     end
   end
 
@@ -28,6 +40,9 @@ class EventsController < ApplicationController
       @matching_booking = current_user.bookings.select { |b| b.event.id == @event.id }.first
       @already_booked = !@matching_booking.nil?
     end
+    if @event.user.birthday
+      @age = ((Time.zone.now - @event.user.birthday.to_time) / 1.year.seconds).floor
+    end
   end
 
   def create
@@ -35,6 +50,7 @@ class EventsController < ApplicationController
     @events.user = current_user
     authorize @events
     if @events.save
+      Chatroom.create({event_id: @events.id})
       redirect_to event_path(@events)
     else
       render :new
@@ -53,7 +69,6 @@ class EventsController < ApplicationController
     @event.destroy
     redirect_to events_path
   end
-
 
   private
 

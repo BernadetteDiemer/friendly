@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
 
   def index
-    policy_scope(Booking)
+    policy_scope(Booking).order(date: :desc)
   end
 
   def new
@@ -41,6 +41,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     authorize @booking
     @booking.send("#{params[:status]}!")
+    create_message(@booking) if @booking.accepted?
     redirect_to users_events_path(current_user)
   end
 
@@ -52,5 +53,13 @@ class BookingsController < ApplicationController
 
   def message_params
     params.require(:booking).permit(:message)
+  end
+
+  def create_message(booking)
+    Message.create(
+        content: booking.message,
+        user_id: booking.user_id,
+        chatroom_id: booking.event.chatroom.id
+      )
   end
 end

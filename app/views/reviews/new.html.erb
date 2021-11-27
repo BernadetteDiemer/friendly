@@ -8,7 +8,7 @@
   <p style="font-size:12px;">Event from <em><%= @event.date.strftime("%a, %B %Y") %></em></p>
     <div class="form">
       <%= simple_form_for [ @event, @booking, @review ] do |f| %>
-        <%= f.input :rating, input_html: { min: '0', max: '5' } %>
+        <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", id:"review_rating" %>
         <%= f.input :comment %>
         <%= f.submit "Submit", class: "btn", style:"float:right;" %>
       <% end %>
