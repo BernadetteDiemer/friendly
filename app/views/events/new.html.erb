@@ -2,7 +2,7 @@
 <%= render 'shared/menubar' %>
 
 
-<div class="container-form p-5">
+<div class="container-form-form px-5 py-3">
   <h2 style="text-align: center; padding-bottom:20px;">Host an event!</h2>
     <%= simple_form_for(@event) do |f| %>
       <%= f.input :title %>
@@ -12,21 +12,27 @@
       <%= f.input :date, as: :string, required: false, input_html: {class: "datepicker"}  %>
       <%= f.input :languages, as: :radio_buttons, collection: ["English", "French", "German", "Italian", "Portuguese", "Other"] %>
       <%= f.input :photo, as: :file %>
-      <div class="text-center">
-        <p>Choose an icon</p>
       </div>
-      <div class="d-flex justify-content-center">
-        <div class="images">
-          <% EventType.all.each do |event_type| %>
-          <img class="image-event" src="<%= event_type.image_url %>" data-event-type-id="<%=event_type.id%>">
-          <% end %>
-          <div id="event-radios" class="d-none">
-            <%= f.collection_radio_buttons :event_type_id, EventType.all, :id, :name %>
+      <p class="container-form-form" style="padding-left: 48px; font-family: montserrat">Select an illustration:</p>
+      <div class="main" style="margin: 10px 0px 10px 10px;">
+        <div class="overflow-auto mb-10 md:mb-20">
+          <div class="d-flex flex-row sm:space-y-0">
+           <% EventType.all.each do |event_type| %>
+              <div class="flex flex-col sm:w-1/6 items-center space-y-2 px-6 p1ym4qhs flex flex-col items-center space-y-2 px-6" data-testid="PromoGridItem">
+                <div class="bubble-event-create pr-2 mt-3 md:mt-0 i9prqz1">
+                  <img class="image-event" style="height: 100px;width: 100px" src="<%= event_type.image_url %>" data-event-type-id="<%=event_type.id%>">
+                </div>
+              </div>
+           <% end %>
+           <div id="event-radios" class="d-none">
+             <%= f.collection_radio_buttons :event_type_id, EventType.all,:id, :name %>
+           </div>
           </div>
         </div>
       </div>
-      <%= f.submit class: 'btn float-right w-100 mb-5' %>
-    <% end %>
+      <div class="container-form-form p-3">
+        <%= f.submit class: 'btn float-right w-100 mb-5' %>
+      </div>
+  <% end %>
 
-  <br><br><br><br>
-</div>
+<br><br><br><br><br>

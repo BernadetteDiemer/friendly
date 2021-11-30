@@ -48,7 +48,6 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(events_params)
     @event.user = current_user
-    @event_type = EventType.find(params[:event_type_id])
     authorize @event
     if @event.save
       Chatroom.create({event_id: @event.id})
