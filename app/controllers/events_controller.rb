@@ -46,12 +46,12 @@ class EventsController < ApplicationController
   end
 
   def create
-    @events = Event.new(events_params)
-    @events.user = current_user
-    authorize @events
-    if @events.save
-      Chatroom.create({event_id: @events.id})
-      redirect_to event_path(@events)
+    @event = Event.new(events_params)
+    @event.user = current_user
+    authorize @event
+    if @event.save
+      Chatroom.create({event_id: @event.id})
+      redirect_to event_path(@event)
     else
       render :new
     end
