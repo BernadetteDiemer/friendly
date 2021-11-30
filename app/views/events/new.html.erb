@@ -21,7 +21,7 @@
           <img class="image-event" src="<%= event_type.image_url %>" data-event-type-id="<%=event_type.id%>">
           <% end %>
           <div id="event-radios" class="d-none">
-            <%= f.collection_radio_buttons :event_type_id, EventType.all,:id, :name %>
+            <%= f.collection_radio_buttons :event_type_id, EventType.all, :id, :name %>
           </div>
         </div>
       </div>
