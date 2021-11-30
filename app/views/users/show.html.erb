@@ -77,7 +77,7 @@
   </div>
   <% end %>
 
-  <div class="container px-5">
+  <div class="container px-4">
     <div class="about">
       <div class="about-top d-flex justify-content-between">
         <h3>About</h3>
@@ -87,13 +87,13 @@
     </div>
   </div>
 
-  <div class="container px-5">
+  <div class="container px-4">
     <button class="invite-btn btn btn-default"> Invite <%= @user.first_name %> to your event.</button>
   </div>
 
   <div class="green-background-profile" style="margin-top: 40px;">
     <div class="container px-5 mb-4 event-box">
-      <h3><%= @user.first_name %> has <%= @user.events.count %> event<%= @user.events.count > 1 || @user.events.count == 0 ? "s": "" %></h3>
+      <h3 style="font-size:20px;"><%= @user.first_name %> has <%= @user.events.count %> event<%= @user.events.count > 1 || @user.events.count == 0 ? "s": "" %></h3>
         <% if @user.bookings.nil? %>
           <p>Stay tuned.</p>
         <% else %>

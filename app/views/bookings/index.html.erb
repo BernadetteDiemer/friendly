@@ -15,7 +15,8 @@
           <strong><p><%= booking.event.description %></p></strong>
       </div>
       <div>
-        <p><%= booking.event.number_of_participants %> humans are joining</p>
+        <p><em><%= booking.event.number_of_participants %></em> people are joining</p>
+        <p><i class="fas fa-glass-cheers"></i> <%= booking.status %></p>
       </div>
     </div>
     <div class="event-picture-right" style="background-image: url('<%= asset_url "WavyLines4 (2).png" %>');">
