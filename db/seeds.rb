@@ -80,6 +80,7 @@ puts "Planning events... "
     user: users.sample,
     event_type: EventType.all.sample,
   )
+  Chatroom.create!(event_id: event.id)
   puts "'#{event.title}' by #{event.user.first_name}"
 end
 
@@ -163,44 +164,48 @@ def finding_events(invites)
   return accepted_events
 end
 
-chatrooms = []
+# chatrooms = []
 
-puts "Calibrating chatrooms..."
-# there should be as many chatrooms as events with 'accepted' bookings
-# and the id of the chosen event should be unique, since one event can only have one chatroom
-finding_events(bookings).each do |event|
-  chatrooms << chatroom = Chatroom.create!(
-    event: event
-  )
-  puts "Chatroom for '#{chatroom.event.title}' by '#{chatroom.event.user.first_name}' was created"
-end
+# puts "Calibrating chatrooms..."
+# # there should be as many chatrooms as events with 'accepted' bookings
+# # and the id of the chosen event should be unique, since one event can only have one chatroom
+# finding_events(bookings).each do |event|
+#   chatroom = Chatroom.new(
+#   event: event
+#   )
+#   if chatroom.valid?
+#     chatroom.save!
+#     chatrooms << chatroom
+#   end
+#   puts "Chatroom for '#{chatroom.event.title}' by '#{chatroom.event.user.first_name}' was created"
+# end
 
-puts "#{finding_events(bookings).length} chatrooms were calibrated"
+# puts "#{finding_events(bookings).length} chatrooms were calibrated"
 
 
 # Messages
 
 # only people that have an accepted booking for an event can write messages in the event chat
-def find_the_chatting_user(messenger)
-  found_users = []
-  messenger.event.bookings.each do |booking|
-    found_users << booking.user
-  end
-  return found_users
-end
+# def find_the_chatting_user(messenger)
+#   found_users = []
+#   messenger.event.bookings.each do |booking|
+#     found_users << booking.user
+#   end
+#   return found_users
+# end
 
-puts "Imagining messages..."
+# puts "Imagining messages..."
 
-10.times do
-  chatroom = chatrooms.sample
-  user = find_the_chatting_user(chatroom).sample
+# 10.times do
+#   chatroom = Chatroom.sample
+#   user = find_the_chatting_user(chatroom).sample
 
-  Message.create!(
-    content: Faker::Quote.most_interesting_man_in_the_world,
-    chatroom: chatroom,
-    user: user
-  )
-end
+#   Message.create!(
+#     content: Faker::Quote.most_interesting_man_in_the_world,
+#     chatroom: chatroom,
+#     user: user
+#   )
+# end
 
-puts "10 messages were imagined"
-puts "One of them was this: #{Message.first.content}"
+# puts "10 messages were imagined"
+# puts "One of them was this: #{Message.first.content}"

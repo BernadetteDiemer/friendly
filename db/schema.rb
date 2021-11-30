@@ -47,6 +47,13 @@ ActiveRecord::Schema.define(version: 2021_11_23_194356) do
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
+  create_table "chatrooms", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_chatrooms_on_event_id"
+  end
+
   create_table "event_types", force: :cascade do |t|
     t.string "image_url"
     t.string "name"
@@ -69,6 +76,16 @@ ActiveRecord::Schema.define(version: 2021_11_23_194356) do
     t.bigint "event_type_id"
     t.index ["event_type_id"], name: "index_events_on_event_type_id"
     t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "chatroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -102,8 +119,11 @@ ActiveRecord::Schema.define(version: 2021_11_23_194356) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookings", "events"
   add_foreign_key "bookings", "users"
+  add_foreign_key "chatrooms", "events"
   add_foreign_key "events", "event_types"
   add_foreign_key "events", "users"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "reviews", "bookings"
   add_foreign_key "reviews", "users"
 end
