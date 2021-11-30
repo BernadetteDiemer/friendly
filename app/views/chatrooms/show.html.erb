@@ -1,8 +1,25 @@
+<%= render 'shared/menubar' %>
+
+<div id="chatroom-navbar" class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link" href="javascript: history.back()" style="margin-top:30px">
+        <i class="fas fa-long-arrow-alt-left"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <div style="text-align: center;" >
+        <h1 style="padding-top: 30px"> <%= @chatroom.event.title %></h1>
+        <div style="width: 365px; padding-bottom: 20px;"> </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-8 col-sm-offset-8">
       <div class="chatroom">
-        <h1 style="text-align: center; padding-bottom: 30px; padding-top: 30px"> <%= @chatroom.event.title %></h1>
           <div class="title" id="messages" data-chatroom-id="<%= @chatroom.id %>">
             <% @chatroom.messages.each do |message| %>
               <%= render "messages/message", message: message %>
@@ -10,10 +27,11 @@
           </div>
           <br>
           <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
-            <%= f.input :content, label: false, placeholder: "Start chatting in #{@chatroom.event.title}" %>
-            <%= f.button :submit, "Chat", class: "btn btn-primary" %>
+            <%= f.input :content, label: false, placeholder: "Message to #{@chatroom.event.title}" %>
+            <%= f.button :submit, "Send", class: "btn btn-primary" %>
           <% end %>
       </div>
     </div>
   </div>
+  <br><br><br>
 </div>

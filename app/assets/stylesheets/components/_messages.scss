@@ -3,10 +3,13 @@
   flex-direction:column;
 }
 
-#right {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
+#right{
+  .message-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    align-items: flex-end;
+  }
 }
 
 #chat-right {
@@ -15,8 +18,7 @@
   border-top-right-radius: 15px;
   border-bottom-left-radius: 15px;
   background-color: #8BB484;
-  margin: 8px;
-  // margin-left: 63px;
+  margin: 8px 0px 8px 0px;
   padding: 12px;
   width: 80%;
   p {
