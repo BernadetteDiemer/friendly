@@ -22,7 +22,7 @@ puts "Creating users..."
     last_name: Faker::Name.last_name,
     about: Faker::Quote.famous_last_words,
     birthday: Faker::Date.birthday(min_age: 18, max_age: 100),
-    gender: Faker::Gender.type ,
+    gender: Faker::Gender.type,
     email: Faker::Internet.email,
     password: "123456"
   )
