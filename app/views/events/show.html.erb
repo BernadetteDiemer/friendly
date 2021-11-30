@@ -4,7 +4,7 @@
 
   <% if @event.photo.attached? %>
     <div class="show-banner p-4" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @event.photo.key, crop: :fill %>')">
-      <h1 class="ml-2 mt-5" style="color:white;">
+      <h1 class="showbanner ml-2 mt-5 mb-5" style="color:white; float-left;">
         <%= @event.title %>
       </h1>
       <p class="created-by mt-3" style="float:right; color:white;">
@@ -13,7 +13,7 @@
     </div>
   <% else %>
     <div class="show-banner p-4" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1519671282429-b44660ead0a7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80')">
-      <h1 class="ml-2 mt-5" style="color:white;">
+      <h1 class="ml-2 mt-5 mb-5" style="color:white; float:left;">
         <%= @event.title %>
       </h1>
       <p class="created-by mt-3" style="float:right; color:white;">
@@ -28,20 +28,17 @@
 
   <div class="container pt-4 pr-5 pl-5 top-text">
     <div class="main">
-      <p><strong>What is planned</strong></p>
+      <p style="font-weight:bold;"><strong>What is planned</strong></p>
     </div>
     <div class="planned">
       <p><%= @event.description %></p>
     </div>
     <div class="main">
-      <p><strong>Languages</strong></p>
+      <p style="font-weight:bold;"><strong>Language</strong></p>
     </div>
       <p><%= @event.languages %></p>
     <div class="planned">
 
-    </div>
-    <div class="location">
-      <p><strong>Location</strong></p>
     </div>
 
   </div>
@@ -53,7 +50,7 @@
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
 
-  <div class="container p-5">
+  <div class="container" style="padding: 20px 48px 20px 48px;">
     <div class="d-flex about">
 
       <div class="profile-pic">
@@ -133,7 +130,7 @@
       <%else%>
         <%= link_to "Login to request", new_user_session_path, class: 'btn w-100' %>
       <% end %>
-        <br><br><br><br><br>
+        <br><br><br>
       </div>
     </div>
 

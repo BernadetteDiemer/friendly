@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   patch '/users/:user_id', to: 'users#update', as: 'update_profile'
   get '/users/:user_id/events', to: 'users#index', as: 'users_events'
   get '/users/:user_id/pastbookings', to: 'pages#pastbookings', as: 'pastbookings'
+  get '/aboutus', to: 'pages#aboutus', as: 'aboutus'
 
   resources :events do
     resources :bookings, only: [:new, :show, :create, :update, :destroy] do
