@@ -11,33 +11,33 @@ User.destroy_all
 EventType.destroy_all
 
 EventType.create(
-  image_url: "https://images.unsplash.com/photo-1605522324043-96094fd06c99?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1472&q=80",
-  name: "cooking"
+  image_url: "https://res.cloudinary.com/dbqihej36/image/upload/v1638281876/production/icons_friendly_hobby_wknyb9.jpg",
+  name: "Hobby"
 )
 
 EventType.create(
-  image_url: "https://images.unsplash.com/photo-1516600164266-f3b8166ae679?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-  name: "Wine Tasting"
+  image_url: "https://res.cloudinary.com/dbqihej36/image/upload/v1638281877/production/icons_friendly_tickets_zimhpy.jpg",
+  name: "Tickets"
 )
 
 EventType.create(
-  image_url: "https://images.unsplash.com/photo-1503482618211-c70b46ede8b0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1476&q=80",
-  name: "Game Night"
+  image_url: "https://res.cloudinary.com/dbqihej36/image/upload/v1638281876/production/icons_friendly_food_xefwig.jpg",
+  name: "Food"
 )
 
 EventType.create(
-  image_url: "https://images.unsplash.com/photo-1519671282429-b44660ead0a7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-  name: "Food Home"
+  image_url: "https://res.cloudinary.com/dbqihej36/image/upload/v1638281877/production/icons_friendly_plant_a7nxdx.jpg",
+  name: "Nature"
 )
 
 EventType.create(
-  image_url: "https://images.unsplash.com/photo-1601325561150-3102333057f5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2874&q=80",
-  name: "PicNic"
+  image_url: "https://res.cloudinary.com/dbqihej36/image/upload/v1638281877/production/icons_friendly_party_fiddra.jpg",
+  name: "Party"
 )
 
 EventType.create(
-  image_url: "https://images.unsplash.com/photo-1548095115-45697e222a58?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1476&q=80",
-  name: "Cinema"
+  image_url: "https://res.cloudinary.com/dbqihej36/image/upload/v1638281877/production/icons_friendly_drinks_ctnyom.jpg",
+  name: "Drinks"
 )
 
 
