@@ -8,7 +8,7 @@
               <%= render "messages/message", message: message %>
             <% end %>
           </div>
-
+          <br>
           <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
             <%= f.input :content, label: false, placeholder: "Start chatting in #{@chatroom.event.title}" %>
             <%= f.button :submit, "Chat", class: "btn btn-primary" %>
