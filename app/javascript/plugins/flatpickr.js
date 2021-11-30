@@ -1,4 +1,5 @@
 import flatpickr from "flatpickr";
+import 'flatpickr/dist/flatpickr.css';
 
 const initFlatpickr = () => {
   flatpickr(".datepicker", {
