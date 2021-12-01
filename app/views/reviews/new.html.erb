@@ -3,9 +3,8 @@
 
 <div class="container-form p-5" style="height:100vh;">
   <h3 style="text-align: left; padding-bottom:20px;">Review <em><%= @event.bookings.first.user.first_name %></em></h3>
-  <p><%= @event.title %></p>
-  <p style="font-size:12px;"><%= @event.description %></p>
-  <p style="font-size:12px;">Event from <em><%= @event.date.strftime("%a, %B %Y") %></em></p>
+
+  <p style="font-size:14px;">"<%= @event.title %>" from <em><%= @event.date.strftime("%A, %b %e %Y") %></em></p>
     <div class="form">
       <%= simple_form_for [ @event, @booking, @review ] do |f| %>
         <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", id:"review_rating" %>

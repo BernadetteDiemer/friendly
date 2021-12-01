@@ -12,11 +12,11 @@
       <% end %>
     </div>
     <p class="title">Superhost <i class="fas fa-concierge-bell"></i></p>
-    <p class="title"><i class="fas fa-genderless"></i> <%= current_user.gender %></p>
+    <p class="title"><%= current_user.gender %></p>
     <div class="stars">
     <p>
-      <i class="fa fa-star" aria-hidden="true"></i>
-      <strong><%= @average.to_f %></strong> (<%= @user.reviews.length %>)
+      <i class="fa fa-star" style="color:rgb(236, 201, 0); font-size:14px;" aria-hidden="true"></i>
+      <strong style="font-size:14px;"><%= @average.to_f %></strong> <span style="font-size:14px;">(<%= @user.reviews.length %>)</span>
     </p>
   </div>
 
@@ -72,12 +72,12 @@
     </div>
   <% else %>
     <div class="profile-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1519671282429-b44660ead0a7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80');">
-      <h2><%= @user.first_name %>, <%= @age %></h2>
+      <h2 style="margin-bottom:30px; margin-right:30px;"><%= @user.first_name %>, <%= @age %></h2>
     </div>
   </div>
   <% end %>
 
-  <div class="container">
+  <div class="container px-5">
     <div class="about">
       <div class="about-top d-flex justify-content-between">
         <h3>About</h3>
@@ -87,12 +87,12 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="container px-5">
     <button class="invite-btn btn btn-default"> Invite <%= @user.first_name %> to your event.</button>
   </div>
 
-  <div class="green-background">
-    <div class="container event-box">
+  <div class="green-background-profile" style="margin-top: 40px;">
+    <div class="container px-5 mb-4 event-box">
       <h3><%= @user.first_name %> has <%= @user.events.count %> event<%= @user.events.count > 1 || @user.events.count == 0 ? "s": "" %></h3>
         <% if @user.bookings.nil? %>
           <p>Stay tuned.</p>
@@ -120,7 +120,7 @@
   <ul id="list-group">
     <% @reviews.each do |review| %>
       <li id="list-group-item">
-        <div class="card-review">
+        <div class="card-review p-3 mx-5">
           <div class="item justify-content-space-between">
             <div class="stars">
               <% review.rating.times do %>

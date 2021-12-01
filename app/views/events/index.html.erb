@@ -17,7 +17,7 @@
             <p><%= event.bookings.accepted.count %> people are joining us</p>
           </div>
         </div>
-          <div class="event-picture-right" style="background-image: url('<%= asset_url "WavyLines4 (2).png" %>');">
+          <div class="event-picture-right" style="background-image: url('<%= EventType.find(event.event_type_id).image_url %>');">
         </div>
       </div>
     <% end %>

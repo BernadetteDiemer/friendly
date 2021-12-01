@@ -17,10 +17,10 @@
       <div class="main" style="margin: 10px 0px 10px 10px;">
           <div class="overflow-auto mb-10 md:mb-20">
         <div class="d-flex flex-row sm:space-y-0">
-      <% EventType.all.each do |event_type| %>
-          <div class="flex flex-col sm:w-1/6 items-center space-y-2 px-6 p1ym4qhs flex flex-col items-center space-y-2 px-6" data-testid="PromoGridItem">
+          <% EventType.all.each do |event_type| %>
+            <div class="flex flex-col sm:w-1/6 items-center space-y-2 px-6 p1ym4qhs flex flex-col items-center space-y-2 px-6" data-testid="PromoGridItem">
             <div class="bubble-event-create pr-2 mt-3 md:mt-0 i9prqz1">
-              <img class="image-event" style="height: 100px;width: 160px" src="<%= event_type.image_url %>" data-event-type-id="<%=event_type.id%>">
+              <img class="image-event" style="height: 100px;width: 100px" src="<%= event_type.image_url %>" data-event-type-id="<%=event_type.id%>">
             </div>
             </div>
           <% end %>

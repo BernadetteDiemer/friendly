@@ -1,7 +1,7 @@
 <%= render 'shared/navbar' %>
 <%= render 'shared/menubar' %>
 
-<div class="container p-4">
+<div class="container-form p-4">
   <h2 style="text-align: center; padding-bottom: 14px;">Past bookings</h2>
   <% current_user.bookings.each do |booking| %>
   <% if booking.status == "accepted" && booking.event.date < Date.today %>
