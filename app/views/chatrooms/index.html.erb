@@ -9,6 +9,7 @@
             <% @chatrooms.each do |chatroom| %>
               <%# logic to  %>
               <% part_of_these_bookings = [] %>
+
               <% chatroom.event.bookings.each do |booking| %>
                 <% if booking.user == current_user %>
                   <% part_of_these_bookings << booking.user %>
