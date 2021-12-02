@@ -1,17 +1,19 @@
+<%= render 'shared/navbar' %>
+<%= render 'shared/menubar' %>
 
-<h3>Create your own event!</h3>
 
-<div class="container-form p-3">
-  <%= simple_form_for(@event) do |f| %>
-    <%= f.input :title %>
-    <%= f.input :description %>
-    <%= f.input :number_of_participants%>
-    <%= f.input :languages, as: :check_boxes, collection: ["English", "French", "German", "Italian", "Portuguese", "Other"] %>
-    <%= f.input :address %>
-    <%= f.input :date, as: :string, required: false, input_html: {class: "datepicker"} %>
-    <%= f.input :photo, as: :file %>
-    <%= f.submit "Save & update", class: 'btn float-right w-100 mb-5' %>
-  <% end %>
+<div class="container-form-form px-5 py-3">
+  <h2 style="text-align: center; padding-bottom:20px;">Edit your event!</h2>
+    <%= simple_form_for(@event) do |f| %>
+      <%= f.input :title %>
+      <%= f.input :description %>
+      <%= f.input :number_of_participants%>
+      <%= f.input :languages, as: :check_boxes, collection: ["English", "French", "German", "Italian", "Portuguese", "Other"] %>
+      <%= f.input :address %>
+      <%= f.input :date, as: :string, required: false, input_html: {class: "datepicker"} %>
+      <%= f.input :photo, as: :file %>
+      <%= f.submit "Save & update", class: 'btn float-right w-100 mb-5' %>
+    <% end %>
   <%= link_to "Delete",
         event_path(@event),
         method: :delete,
