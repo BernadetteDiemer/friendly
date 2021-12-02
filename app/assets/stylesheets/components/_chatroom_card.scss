@@ -1,0 +1,39 @@
+.chatroom-card {
+  display: flex;
+  align-content: center;
+  padding: 18px;
+  border-bottom: rgb(206, 206, 206) solid 1px;
+  width: 100%;
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .chat-message {
+    display: flex;
+    align-items: center;
+    color:grey;
+    p {
+      margin: 0 24px 0 0;
+      color:grey;
+      font-size: 14px;
+    }
+  }
+}
+
+h5 {
+  color: black;
+}
+
+.chat-message {
+  color: black;
+  font-size: 12px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 18px;
+}
