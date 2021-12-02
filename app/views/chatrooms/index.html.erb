@@ -2,32 +2,41 @@
 <%= render 'shared/menubar' %>
 
 <div class="chat-index">
-    <div class="row">
-      <div class="col-xs-12 col-sm-8 col-sm-offset-8">
+    <div class="">
+      <div class="d-flex justify-content-center" style="width=100%;">
         <% if @chatrooms.present? %>
-          <nav class="event-title">
+          <div class="chatroom-title">
             <% @chatrooms.each do |chatroom| %>
-            <% if chatroom.event.user == current_user %>
-<<<<<<< HEAD
-              <img src="<%= chatroom.event.event_type.image_url %>" alt="Icon of the event" class="avatar" >
-              <%= link_to chatroom.event.title, chatroom_path(chatroom.id), class: "nav-link room-nav-link" %>
-=======
-              <div class="chatroom-card">
-                <%= cl_image_tag chatroom.event.user.photo.key, class: "avatar"%>
-                <div class="card-product-infos">
-                  <h2>
-                    <%= link_to chatroom.event.title, chatroom_path(chatroom.id), class: "nav-link room-nav-link" %>
-                  </h2>
-                </div>
-              </div>
->>>>>>> master
-            <% end %>
-          <% end %>
-          </nav>
+              <%# logic to  %>
+              <% part_of_these_bookings = [] %>
+              <% chatroom.event.bookings.each do |booking| %>
+                <% if booking.user == current_user %>
+                  <% part_of_these_bookings << booking.user %>
+                <% end %>
+              <% end %>
+
+              <% if chatroom.event.user == current_user || part_of_these_bookings.include?(current_user) %>
+                <%= link_to chatroom_path(chatroom.id) do %>
+                  <div class="chatroom-card">
+                    <%= cl_image_tag chatroom.event.event_type.image_url, class: "avatar"%>
+                    <div class="card-content">
+                      <div class="chatroom-card-title">
+                        <h5 id="chatroom-name"><%= chatroom.event.title[0..24]%></h5>
+                      </div> <%# end tag of chatroom-card-title %>
+                      <div class="chat-message">
+                        <p><%= chatroom.messages.last.content[0..16] %>...</p>
+                        <%= chatroom.messages.last.created_at.strftime("%H:%M") %>
+                      </div>
+                    </div>
+                  </div> <%# end tag of chatroom-card %>
+                <% end %> <%# end tag of link_to %>
+              <% end %> <%# if chatroom.event.user %>
+            <% end %> <%# @chatrooms.each do %>
+          </div>
         <% else %>
           <div class="text-muted">
             The are no chatrooms
           </div>
-        <% end %>
+        <% end %> <%# if @chatrooms.present? %>
       </div>
 </div>
