@@ -20,19 +20,6 @@
     </p>
   </div>
 
-
-  <div class="container px-4 text-left justify-content-center">
-    <%= simple_form_for current_user, url: profile_path do |f| %>
-      <strong><%= f.input :about %></strong>
-      <strong><%= f.input :first_name %></strong>
-      <strong><%= f.input :gender %></strong>
-      <strong><%= f.input :birthday, as: :date, start_year: 1950 %></strong>
-      <strong><%= f.input :photo, as: :file, class: "photo-btn" %></strong>
-      <%= f.submit "Save & Upload", class: "about-btn btn btn-default" %>
-    <% end %>
-  </div>
-
-
   <div class="main mt-5" style="margin: 10px 0px 10px 10px;">
     <h2 class="text-center justify-content-center">All events</h2>
     <div class="main" style="margin: 10px 0px 10px 10px;">
@@ -71,7 +58,7 @@
       <h2><%= @user.first_name %>, <%= @age %></h2>
     </div>
   <% else %>
-    <div class="profile-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1519671282429-b44660ead0a7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80');">
+    <div class="profile-banner" style="border-radius: 10px 10px 50px 10px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1519671282429-b44660ead0a7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80');">
       <h2 style="margin-bottom:30px; margin-right:30px;"><%= @user.first_name %>, <%= @age %></h2>
     </div>
   </div>
@@ -115,6 +102,7 @@
   </div>
 <% end %>
 
+<div class="container">
 <div class="row justify-content-center">
 <h2 style="margin-top: 20px;">Reviews for <%= @user.first_name %></h2>
   <ul id="list-group">
@@ -138,4 +126,18 @@
     <% end %>
   </ul>
 </div>
+</div>
+<% if @user == current_user %>
+  <div class="container px-4 text-left justify-content-center">
+  <h2 class="my-5 text-center justify-content-center" style="margin-top: 20px;">Your profile</h2>
+    <%= simple_form_for current_user, url: profile_path do |f| %>
+      <strong><%= f.input :about %></strong>
+      <strong><%= f.input :first_name %></strong>
+      <strong><%= f.input :gender %></strong>
+      <strong><%= f.input :birthday, as: :date, start_year: 1950 %></strong>
+      <strong><%= f.input :photo, as: :file, class: "photo-btn" %></strong>
+      <%= f.submit "Save & Upload", class: "about-btn btn btn-default" %>
+    <% end %>
+  </div>
+<% end %>
 <br><br><br><br>
