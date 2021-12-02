@@ -28,9 +28,15 @@
               <% end %>
             <% end %>
 
+<<<<<<< HEAD
             <% if accepted_any > 0 %>
               <div id="chat-link"><i class="far fa-comment-alt"></i> <%= link_to "Chat", chatroom_path(event.chatroom.id) %></div>
             <% end %>
+=======
+              <% if accepted_any > 0 %>
+                <div id="chat-link"><i class="far fa-comment-alt"></i> <%= link_to "Chat", chatroom_path(event.chatroom.id) %></div>
+              <% end %>
+>>>>>>> master
           </div>
 
         </div>
@@ -108,7 +114,7 @@
               </li>
             <% end %> <%# end tag for if booking.pending?  %>
           <% end %> <%# end tag for event.bookings.each  %>
-        </div>
+        </div> <%# end tag for booking request  %>
 
       </div> <%# closing tag for 'my-events-card'  %>
       <% end %>
