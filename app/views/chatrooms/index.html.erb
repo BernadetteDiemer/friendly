@@ -26,8 +26,10 @@
                         <h5 id="chatroom-name"><%= chatroom.event.title[0..24]%></h5>
                       </div> <%# end tag of chatroom-card-title %>
                       <div class="chat-message">
-                        <p><%= chatroom.messages.last.content[0..16] %>...</p>
-                        <%= chatroom.messages.last.created_at.strftime("%H:%M") %>
+                        <% if !chatroom.messages.nil? %>
+                          <p><%= chatroom.messages.last.content[0..16] %>...</p>
+                          <%= chatroom.messages.last.created_at.strftime("%H:%M") %>
+                        <% end %>
                       </div>
                     </div> <%# end tag of card-content %>
                   </div> <%# end tag of chatroom-card %>
