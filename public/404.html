@@ -3,65 +3,100 @@
 <head>
   <title>The page you were looking for doesn't exist (404)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://use.typekit.net/tuw2ddf.css">
   <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
+    .rails-default-error-page {
+      background-color: white;
+      color: black;
+      text-align: center;
+      margin: 0;
+    }
 
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
+    h1,
+    h2 {
+      font-family: playfair-display, serif;
+      font-weight: 700;
+      font-style: normal;
+    }
 
-  .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+    p,
+    a {
+      font-family: montserrat thin, sans-serif;
+      font-weight: 200;
+      font-style: normal;
+    }
 
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
+    .container-form {
+      background-image: url('https://res.cloudinary.com/dbqihej36/image/upload/v1638559193/wavy_diagonal_zt5hsa.png');
+      height: 100vh;
+    }
 
-  .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+    .container {
+      margin-top: 120px;
+    }
+
+    .error-type {
+      color: #FF9AC2;
+    }
+
+    .message {
+      padding-top: 20px;
+      padding-bottom: 50px;
+    }
+
+    .message h2 {
+      margin: 8px;
+    }
+
+    .btn {
+      background: #FDB849;
+      width: 60%;
+      height: 40px;
+      left: 32px;
+      top: 1874px;
+      border-radius: 20px 20px 20px 0px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .button {
+      display: flex;
+      justify-content: center;
+      padding-top: 200px;
+    }
   </style>
-</head>
+  </head>
 
-<body class="rails-default-error-page">
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
+  <body class="rails-default-error-page container-form">
+    <!-- This file lives in public/500.html -->
+    <div class="container">
+
+      <div class="error-type">
+        <p>404</p>
+        <p>Page Not Found</p>
+      </div>
+
+      <div class="message">
+        <h2>Oh no!</h2>
+        <h2>This isn't very friendly of us.</h2>
+      </div>
+
+      <img src="https://res.cloudinary.com/dbqihej36/image/upload/v1638560578/sad_ubihsl.png" alt="Sad Smiley Face"
+        style="height: 150px;">
+
+      <div class="button">
+        <div class="btn mb-5">
+          <a href="/home">Go to homescreen</a>
+        </div>
+      </div>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
-  </div>
-</body>
-</html>
+  </body>
+
+  </html>
