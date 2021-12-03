@@ -3,4 +3,4 @@
 
 // app/assets/config/manifest.js
 // ...
-//= link_directory ../javascripts/manifest.json
+//= link manifest.json
