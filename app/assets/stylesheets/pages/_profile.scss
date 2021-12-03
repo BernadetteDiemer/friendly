@@ -38,11 +38,24 @@
 
 .about {
   margin-top: 2em;
+  p {
+    font-size: 14px;
+    margin-left: 50px;
+    padding-top: 10px;
+    width: 200px;
+  }
+  .avatar {
+    float: left;
+  }
 }
 
 .about-top p {
   color: #8BB484;
   font-size: 14px;
+}
+
+.joined {
+  padding: 4px 0 0 4px;
 }
 
 .green-background {

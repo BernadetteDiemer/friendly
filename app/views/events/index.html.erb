@@ -6,7 +6,7 @@
   <% @events.each do |event| %>
     <% if event.number_of_participants > event.bookings.accepted.count %>
     <% if event.date > Time.now %>
-      <div class="card-product justify-content-center">
+      <div class="card-product">
         <div class="card-product-infos">
           <p style="color: #8BB484; padding-bottom:10px;"><%= event.date.strftime("%a, %d %b %Y | %H:%M") %></p>
           <a href="<%= event_path(event) %>">
