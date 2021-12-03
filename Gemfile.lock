@@ -223,6 +223,8 @@ GEM
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
+    serviceworker-rails (0.6.0)
+      railties (>= 3.1)
     simple_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -297,6 +299,7 @@ DEPENDENCIES
   redis (~> 4.0)
   sass-rails (>= 6)
   selenium-webdriver
+  serviceworker-rails
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
@@ -310,4 +313,4 @@ RUBY VERSION
    ruby 2.7.3p183
 
 BUNDLED WITH
-   2.2.21
+   2.2.32
