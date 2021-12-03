@@ -1,7 +1,7 @@
 <%= render 'shared/navbar' %>
 <%= render 'shared/menubar' %>
 
-<div class="container p-4">
+<div class="container-form p-4">
   <h2 style="text-align: center; padding-bottom: 14px;">My upcoming bookings</h1>
   <% current_user.bookings.each do |booking| %>
   <% if booking.event.date > Date.today %>
@@ -19,7 +19,7 @@
         <p><i class="fas fa-glass-cheers"></i> <%= booking.status %></p>
       </div>
     </div>
-    <div class="event-picture-right" style="background-image: url('<%= asset_url "WavyLines4 (2).png" %>');">
+      <div class="event-picture-right" style="background-image: url('<%= EventType.find(booking.event.event_type_id).image_url %>');">
     </div>
   </div>
     <% end %>

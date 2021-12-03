@@ -53,7 +53,7 @@
   <div class="container" style="padding: 20px 48px 20px 48px;">
     <div class="d-flex about">
 
-      <div class="profile-pic">
+      <div class="profile-pic d-flex">
 
         <a href="<%= profile_path(@event.user) %>">
           <% if @event.user.photo.attached? %>
@@ -61,6 +61,7 @@
           <% else %>
             <%= image_tag "https://images.pexels.com/photos/1983037/pexels-photo-1983037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", class: "avatar" %>
           <% end %>
+          <p>view <em><%= @event.user.first_name %>'s</em> profile</p>
         </a>
       </div>
 
