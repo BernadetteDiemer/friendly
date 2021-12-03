@@ -5,7 +5,6 @@ Chatroom.destroy_all
 Event.destroy_all
 Booking.destroy_all
 Review.destroy_all
-# Chatroom.destroy_all
 Message.destroy_all
 User.destroy_all
 EventType.destroy_all
