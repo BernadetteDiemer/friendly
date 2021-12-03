@@ -8,7 +8,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <div style="text-align: center; margin-left: -10px;" >
+      <div style="text-align: center; margin-left: -10px; height: 100px;" >
         <h4 style="padding-top: 32px"> <%= @chatroom.event.title %></h4>
         <p style="font-size: 12px; color: grey;">This is an event for <%= @chatroom.event.number_of_participants %> people</p>
         <div style="width: 365px; padding-bottom: 20px;"> </div>
@@ -23,7 +23,21 @@
       <div class="chatroom">
           <div class="title" id="messages" data-chatroom-id="<%= @chatroom.id %>">
             <% @chatroom.messages.each do |message| %>
-              <%= render "messages/message", message: message %>
+              <% if message.user == current_user %>
+                <div id="right">
+                  <div class="message-container">
+                    <div id="chat-right">
+                      <%= render "messages/message", message: message%>
+                    </div>
+                  </div>
+                </div>
+              <% else %>
+                <div id="left">
+                    <div id="chat-left">
+                      <%= render "messages/message", message: message%>
+                    </div>
+                </div>
+              <% end %>
             <% end %>
           </div>
           <br>

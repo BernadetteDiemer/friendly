@@ -1,5 +1,19 @@
-<%= render 'shared/navbar' %>
 <%= render 'shared/menubar' %>
+
+<div id="chatroom-navbar" class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link" href="javascript: history.back()" style="margin-top:30px">
+        <i class="fas fa-long-arrow-alt-left"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <div style="text-align: center; margin-left: -10px; height: 80px;" >
+        <div style="width: 365px; padding-bottom: 20px;"> </div>
+      </div>
+    </li>
+  </ul>
+</div>
 
 <div class="chat-index">
     <div class="">
@@ -18,19 +32,19 @@
 
               <% if chatroom.event.user == current_user || part_of_these_bookings.include?(current_user) %>
                 <%= link_to chatroom_path(chatroom.id) do %>
-                  <% if chatroom.messages != nil %>
-                  <div class="chatroom-card">
-                    <%= cl_image_tag chatroom.event.event_type.image_url, class: "avatar"%>
-                    <div class="card-content">
-                      <div class="chatroom-card-title">
-                        <h5 id="chatroom-name"><%= chatroom.event.title[0..24]%></h5>
-                      </div> <%# end tag of chatroom-card-title %>
-                      <div class="chat-message">
-                        <p><%= chatroom.messages.last.content[0..16] %>...</p>
-                        <%= chatroom.messages.last.created_at.strftime("%H:%M") %>
-                      </div>
-                    </div> <%# end tag of card-content %>
-                  </div> <%# end tag of chatroom-card %>
+                  <% if chatroom.messages.any? %>
+                    <div class="chatroom-card">
+                      <%= image_tag chatroom.event.event_type.image_url, class: "avatar"%>
+                      <div class="card-content">
+                        <div class="chatroom-card-title">
+                          <h5 id="chatroom-name"><%= chatroom.event.title[0..24]%></h5>
+                        </div> <%# end tag of chatroom-card-title %>
+                        <div class="chat-message">
+                          <p><%= chatroom.messages.last.content[0..16] %>...</p>
+                          <%= chatroom.messages.last.created_at.strftime("%H:%M") %>
+                        </div>
+                      </div> <%# end tag of card-content %>
+                    </div> <%# end tag of chatroom-card %>
                   <% end %> <%# end tag if !chatroom.messages.nil? %>
                 <% end %> <%# end tag of link_to %>
               <% end %> <%# if chatroom.event.user %>
