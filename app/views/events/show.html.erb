@@ -51,10 +51,8 @@
     </div>
 
   <div class="container" style="padding: 20px 48px 20px 48px;">
-    <div class="d-flex about">
-
+    <div class="d-flex about-events">
       <div class="profile-pic d-flex">
-
         <a href="<%= profile_path(@event.user) %>">
           <% if @event.user.photo.attached? %>
               <%= cl_image_tag @event.user.photo.key, class: "avatar" %>
@@ -62,15 +60,8 @@
             <%= image_tag "https://images.pexels.com/photos/1983037/pexels-photo-1983037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260", class: "avatar" %>
           <% end %>
           <p>view <em><%= @event.user.first_name %>'s</em> profile</p>
+          <p id="event-user-about"><%= @event.user.about %></p>
         </a>
-      </div>
-
-      <div class="d-flex about-text ml-3">
-        <div>
-          <p><%= @event.user.about %></p>
-          <%# <a href="<%= chatroom_path(@event.chatroom) %>
-          <%# style="color:#8BB484; font-size:18px;"><i class="fas fa-comment"><span class="ml-1">Chat</span></i></a> %>
-        </div>
       </div>
     </div>
 

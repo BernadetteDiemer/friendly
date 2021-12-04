@@ -39,3 +39,21 @@
     margin-bottom: 0;
   }
 }
+
+.about-events {
+  margin-top: 2em;
+  p {
+    font-size: 14px;
+    margin-left: 50px;
+    padding-top: 10px;
+    width: 200px;
+  }
+  .avatar {
+    float: left;
+  }
+}
+
+#event-user-about {
+  padding: 0;
+  color: grey;
+}
